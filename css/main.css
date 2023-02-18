@@ -1,0 +1,43 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    margin: 0 5%;
+    padding: 2em;
+}
+
+.navbar a{
+    text-decoration: none;
+
+}
+/*Body content*/
+.column {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.column #left {
+    width: 75%;
+    margin: 5%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.column #right {
+    width: 25%;
+    margin: 5%;
+    padding: 5%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+/*Filter group*/
+.filterGroup {
+    border: solid thin black;
+}
+
+/*Blog Card*/
+.blogCard {
+
+}
+
