@@ -1,43 +1,97 @@
+/*Load Fonts*/
+@font-face {
+    font-family: "Univers";
+    src: url("../fonts/UniversBlack.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*Global Styles*/
+button {
+    border: solid thin lightgrey;
+    border-radius: 2em;
+}
+
+/*Page navigation*/
 .navbar {
     display: flex;
     justify-content: space-between;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
     margin: 0 5%;
     padding: 2em;
+    font-family: Univers, serif;
 }
-
 .navbar a{
     text-decoration: none;
+    color:black;
 
 }
-/*Body content*/
+/*single column layout for login/register/profile*/
+.singleColumn {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-top: 5%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    height: 300px;
+}
+.singleColumn .body {
+    margin:5%;
+    display: block;
+}
+/*two column layout for landing page & blog posts*/
 .column {
     display: flex;
     flex-direction: row;
 
+}
+.column .card {
+    width: 60%;
+    margin: 5%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    height: 500px;
 }
 
 .column #left {
     width: 75%;
     margin: 5%;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-    height: 300px; /* Should be removed. Only for demonstration */
 }
-
+.column #left h2{
+    margin:5%
+}
 .column #right {
     width: 25%;
     margin: 5%;
     padding: 5%;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-    height: 300px; /* Should be removed. Only for demonstration */
 }
-/*Filter group*/
+
+/*Filter groups*/
 .filterGroup {
-    border: solid thin black;
 }
 
-/*Blog Card*/
-.blogCard {
+.filterGroup button:hover {
+    border: solid thin lightgrey;
+    background-color: lightgrey;
+    border-radius: 2em;
+}
+/*Blog Post Container*/
+.articleContainer{
+    margin: 5%;
+    border-top: solid thin lightgrey;
+}
+.articleContainer .article{
+    border-bottom: solid thin lightgrey;
+}
+/*TODO: Update spacing & styling */
+.articleContainer .article h2 {
 
 }
+.articleContainer .article p{
 
+}
+/*Blog Post*/
+.article{
+
+}
