@@ -1,10 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>VOCO Blog - Search</title>
-</head>
-<body>
+<!doctype html>
+<html class="no-js" lang="">
 
+<head>
+    <meta charset="utf-8">
+    <title>VOCO Blog - Search</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div>
+            <form action="">
+                <label>
+                    <input type="text" placeholder="Search.." name="search">
+                </label>
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
+        <div>
+            <!--TODO: Include Logo Image-->
+            <h1><a href="#">VOCO Blog</a></h1>
+        </div>
+
+        <div>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+    </nav>
+</header>
+<div class="column">
+    <div id="left">
+        <div>
+            <form>
+                <label>
+                    <input required type="search" placeholder="Search...">
+                </label>
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <br>
+        <h2>Results for "A Blog Title":</h2>
+        <div class="articleContainer">
+            <div class="article">
+                <h3>A Blog title</h3>
+                <p>This is the first two sentences of a blog post</p>
+            </div>
+            <div class="article">
+                <h3>A Blog title</h3>
+                <p>This is the first two sentences of a blog post</p>
+
+            </div>
+            <!--TODO: Update article cards such that they link to blog posts when clicked & add author-->
+            <div class="article">
+                <h3>A Blog title</h3>
+                <p>This is the first two sentences of a blog post</p>
+            </div>
+            <div class="article">
+                <h3>A Blog title</h3>
+                <p>This is the first two sentences of a blog post</p>
+            </div>
+            <div class="article">
+                <h3>A Blog title</h3>
+                <p>This is the first two sentences of a blog post</p>
+            </div>
+        </div>
+    </div>
+    <div id="right">
+        <div class="filterGroup">
+            <fieldset>
+                <legend>Filters</legend>
+                <button type="button" value="climb">Climbing</button>
+                <button type="button" value="mountaineering">Mountaineering</button>
+                <button type="button" value="hike">Hiking</button>
+
+            </fieldset>
+        </div>
+
+    </div>
+</div>
+<footer>
+
+</footer>
+<script src="js/main.js"></script>
 </body>
+
 </html>

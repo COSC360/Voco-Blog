@@ -1,10 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>BLOG TITLE HERE</title>
-</head>
-<body>
+<!doctype html>
+<html class="no-js" lang="">
 
+<head>
+    <meta charset="utf-8">
+    <title>VOCO Blog - A Blog Post</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div>
+            <form action="">
+                <label>
+                    <input type="text" placeholder="Search.." name="search">
+                </label>
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
+        <div>
+            <!--TODO: Include Logo Image-->
+            <h1><a href="#">VOCO Blog</a></h1>
+        </div>
+
+        <div>
+            <a href="profile.html">Username</a>
+            <a href="#">logout</a>
+        </div>
+    </nav>
+</header>
+<form action="" method="post">
+    <div class="column">
+        <div id="left">
+            <h2>A Blog Post</h2>
+            <div id="blogContents">
+                <p>
+                    This is where the contents of a blog post would go. Images would be contained in their tags and
+                    styling would be applied as necessary. "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                </p>
+            </div>
+        </div>
+        <div id="right">
+            <div>
+                <fieldset>
+                    <legend>Related Posts</legend>
+                    <div class="articleContainer">
+                        <div class="article">
+                            <h3>A Blog title</h3>
+                            <p>This is the first two sentences of a blog post</p>
+                        </div>
+                        <div class="article">
+                            <h3>A Blog title</h3>
+                            <p>This is the first two sentences of a blog post</p>
+
+                        </div>
+                        <div class="article">
+                            <h3>A Blog title</h3>
+                            <p>This is the first two sentences of a blog post</p>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Comments</legend>
+                    <form>
+                        <label>
+                            <input required type="text" placeholder="Write a comment...">
+                        </label>
+                        <button type="submit">Submit</button>
+                    </form>
+                    <!--TODO: Update articleContainer to be a generic item container for comments/posts-->
+                    <div class="articleContainer">
+                        <div class="article">
+                            <h3>Logan Parker</h3>
+                            <p>Wow funky fresh post!</p>
+                        </div>
+                        <div class="article">
+                            <h3>Edouard Eltherington</h3>
+                            <p>Dude this is a sick blog post!</p>
+                        </div>
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+<footer>
+
+</footer>
+<script src="js/main.js"></script>
 </body>
+
 </html>

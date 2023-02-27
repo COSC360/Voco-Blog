@@ -1,10 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>VOCO Blog - Create a Post</title>
-</head>
-<body>
+<!doctype html>
+<html class="no-js" lang="">
 
+<head>
+    <meta charset="utf-8">
+    <title>VOCO Blog - Home</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <div>
+            <form action="">
+                <label>
+                    <input type="text" placeholder="Search.." name="search">
+                </label>
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
+        <div>
+            <!--TODO: Include Logo Image-->
+            <h1><a href="#">VOCO Blog</a></h1>
+        </div>
+
+        <div>
+            <a href="profile.html">Username</a>
+            <a href="#">logout</a>
+        </div>
+    </nav>
+</header>
+<form action="" method="post">
+    <div class="column">
+        <div id="left">
+            <h2>Create A Post:</h2>
+            <div id="contentCreation">
+                <label>
+                    <input type="text">
+                </label>
+            </div>
+        </div>
+        <div id="right">
+            <div>
+                <fieldset>
+                    <legend>Post Content</legend>
+                    <div>
+                        <label for="postTitle">Post Title:</label>
+                        <input required type="text" id="postTitle" name="postTitle">
+                    </div>
+                    <div>
+                        <label for="categories">Select Post Categories</label>
+                        <select name="categories" id="categories">
+                            <option>Climb</option>
+                            <option>Hike</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="bannerImage">Upload Cover Image:</label>
+                        <input type="file" id="bannerImage">
+                    </div>
+                    <div>
+                        <label>
+                            <button type="submit">Create Post</button>
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+<footer>
+
+</footer>
+<script src="js/main.js"></script>
 </body>
+
 </html>
