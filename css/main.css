@@ -66,6 +66,20 @@ button {
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
+.headbox {
+    padding: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.logo {
+    width: 40%;
+    height: auto;
+    text-align: center;
+}
+
 /*Filter groups*/
 .filterGroup {
 }
