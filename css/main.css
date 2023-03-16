@@ -66,16 +66,27 @@ button {
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
+/*Header elements at the top of page*/
+
 .headbox {
-    padding: 1.5em;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: space-around;
 }
 
+/*TODO: Generalize spacing around flex elememts, force attempt to adding spacing on <a> links in login/register*/
+.headbox a {
+    margin: 0.5em;
+}
+
+.headbox a:hover{
+    color: blue;
+}
+
+
 
 .logo {
-    width: 40%;
+    width: 25%;
     height: auto;
     text-align: center;
 }
