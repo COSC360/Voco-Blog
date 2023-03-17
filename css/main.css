@@ -17,7 +17,7 @@ button {
     display: flex;
     justify-content: space-between;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-    margin: 0 5%;
+    margin: 0 1em;
     padding: 2em;
 }
 .navbar a{
@@ -46,14 +46,14 @@ button {
 }
 .column .card {
     width: 60%;
-    margin: 5%;
+    margin: 1em;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
     height: 500px;
 }
 
 .column #left {
-    width: 75%;
-    margin: 5%;
+    width: 100%;
+    margin: 1em;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 .column #left h2{
@@ -61,7 +61,7 @@ button {
 }
 .column #right {
     width: 25%;
-    margin: 5%;
+    margin: 1em;
     padding: 5%;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
@@ -83,8 +83,6 @@ button {
     color: blue;
 }
 
-
-
 .logo {
     width: 25%;
     height: auto;
@@ -102,20 +100,32 @@ button {
 }
 /*Blog Post Container*/
 .articleContainer{
-    margin: 5%;
     border-top: solid thin lightgrey;
+    overflow: scroll;
+    height: 40em;
 }
-.articleContainer .article{
-    border-bottom: solid thin lightgrey;
-}
+
 /*TODO: Update spacing & styling */
-.articleContainer .article h2 {
-
-}
-.articleContainer .article p{
-
-}
 /*Blog Post*/
-.article{
+.entry{
+    padding: 1em;
+    margin: 1em 0.5em 1em 0.5em;
+    border: black thin solid;
+    height: 14em;
+}
+.blog-preview{
+    padding: 2em;
+}
 
+.entry figure {
+    border: black thin solid;
+    float: right;
+    position: relative;
+    height: 225px;
+    width: 225px;
+}
+
+
+.blog-preview {
+    float: left;
 }
