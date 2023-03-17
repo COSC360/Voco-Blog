@@ -12,6 +12,10 @@ button {
     border-radius: 2em;
 }
 
+h1,h2,h3,p,a,button,legend {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 /*Page navigation*/
 .navbar {
     display: flex;
