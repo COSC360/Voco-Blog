@@ -117,15 +117,15 @@ h1,h2,h3,p,a,button,legend,label {
     height: 14em;
 }
 .blog-preview{
-    padding: 2em;
+    padding: 0.5em;
 }
 
 .entry figure {
     border: black thin solid;
     float: right;
     position: relative;
-    height: 225px;
-    width: 225px;
+    height: 13em;
+    width: 13em;
 }
 
 
