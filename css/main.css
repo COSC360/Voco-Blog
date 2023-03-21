@@ -118,6 +118,9 @@ h1,h2,h3,p,a,button,legend,label {
 }
 .blog-preview{
     padding: 0.5em;
+    float: left;
+    overflow: hidden;
+
 }
 
 .entry figure {
