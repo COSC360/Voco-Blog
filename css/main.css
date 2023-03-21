@@ -12,14 +12,14 @@ button {
     border-radius: 2em;
 }
 
-h1,h2,h3,p,a,button,legend {
+h1,h2,h3,p,a,button,legend,label {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 /*Page navigation*/
 .navbar {
-    display: flex;
-    justify-content: space-between;
+    display: inline-flex;
+    justify-content: space-around;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
     margin: 0 1em;
     padding: 2em;
@@ -73,7 +73,7 @@ h1,h2,h3,p,a,button,legend {
 /*Header elements at the top of page*/
 
 .headbox {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: space-around;
 }
@@ -90,7 +90,6 @@ h1,h2,h3,p,a,button,legend {
 .logo {
     width: 25%;
     height: auto;
-    text-align: center;
 }
 
 /*Filter groups*/

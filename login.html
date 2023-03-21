@@ -12,17 +12,10 @@
 <body>
 <header>
     <nav class="navbar">
-        <div>
-
-        </div>
-
-        <div>
+        
+        <div class="headbox">
             <!--TODO: Include Logo Image-->
-            <a href="index.html">VOCO Blog</a>
-        </div>
-
-        <div>
-
+           <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
         </div>
     </nav>
 </header>
@@ -32,6 +25,14 @@
         <form action="">
             <fieldset>
                 <legend>Login</legend>
+                <div>
+                    <label for="first-name">First Name:</label>
+                    <input id="first-name" placeholder="John">
+                </div>
+                <div>
+                    <label for="last-name">Last Name:</label>
+                    <input id="last-name" placeholder="John">
+                </div>
                 <div>
                     <label for="email">Email:</label>
                     <input required type="email" id="email" placeholder="example@webmail.com">
