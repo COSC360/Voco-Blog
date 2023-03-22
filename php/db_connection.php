@@ -1,12 +1,22 @@
 <?php
-require('db_info.php');
+include('db_info.php');
+
 
 function open_connection(){
-    $conn = new mysqli(DBHOST,DBUSER,DBPASS,DBNAME)
-    or die("Connect failed: %s\n". $conn -> error);
-    return $conn;
+    try {
+        $connString = "mysql:host=".DBHOST.";dbname=".DBNAME;
+        $pdo = new PDO($connString, DBUSER, DBPASS);
+    } catch (PDOException $e){
+        die($e->getMessage());
+    }
+
+    return $pdo;
 }
+
 function close_connection($conn){
     $conn -> close();
 }
+
+?>
+
 
