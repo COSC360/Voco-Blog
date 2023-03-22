@@ -106,15 +106,23 @@ h1,h2,h3,p,a,button,legend,label {
     border-top: solid thin lightgrey;
     overflow: scroll;
     height: 40em;
+    white-space: nowrap;
 }
 
 /*TODO: Update spacing & styling */
 /*Blog Post*/
 .entry{
+    overflow: hidden;
     padding: 1em;
     margin: 1em 0.5em 1em 0.5em;
     border: black thin solid;
     height: 14em;
+
+}
+
+.blog-title p {
+    vertical-align: middle;
+    padding: 0em 1em 0em 1em;
 }
 .blog-preview{
     padding: 0.5em;
