@@ -15,7 +15,19 @@ button {
 h1,h2,h3,p,a,button,legend,label {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+/* User forms*/
+.user-form {
+    display: flex;
+    flex-direction: column;
+    padding: 2em 2em;
+}
 
+.user-form input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
 /*Page navigation*/
 .navbar {
     display: inline-flex;
@@ -23,6 +35,8 @@ h1,h2,h3,p,a,button,legend,label {
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
     margin: 0 1em;
     padding: 2em;
+    height: 5em;
+
 }
 .navbar a{
     text-decoration: none;
@@ -36,7 +50,8 @@ h1,h2,h3,p,a,button,legend,label {
     width: 50%;
     margin-top: 5%;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-    height: 300px;
+    height: auto;
+
 }
 .singleColumn .body {
     margin:5%;
@@ -59,6 +74,7 @@ h1,h2,h3,p,a,button,legend,label {
     width: 100%;
     margin: 1em;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+
 }
 .column #left h2{
     margin:5%
@@ -85,6 +101,12 @@ h1,h2,h3,p,a,button,legend,label {
 
 .headbox a:hover{
     color: blue;
+}
+
+#search {
+    display: flex;
+    flex-direction: row;
+    padding: none;
 }
 
 .logo {

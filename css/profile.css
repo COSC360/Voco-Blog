@@ -1,0 +1,46 @@
+.card {
+    overflow: scroll;
+    flex-direction: column;
+}
+
+#your-profile {
+    overflow: scroll;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+
+.post-preview {
+    overflow: hidden;
+    padding: 1em;
+    margin: 1.25em 0.5em 1em 0.5em;
+    border: black thin solid;
+    height: 3em;
+
+}
+
+.profile-contents p {
+    padding: 1em;
+    margin: 1em;
+}
+
+.profile-pic {
+    margin: 5em;
+    height: 8em;
+    width: 8em;
+}
+
+#your-profile button {
+    margin: 5em;
+}
+
+.entry-buttons {
+    height: 4em;
+    width: 100%;
+}
+
+.entry-buttons button {
+    float: right;
+}
+
+

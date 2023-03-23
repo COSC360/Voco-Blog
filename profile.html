@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/profile.css">
+
 </head>
 
 <body>
@@ -21,14 +23,13 @@
       </form>
     </div>
 
-    <div>
+    <div class="headbox">
       <!--TODO: Include Logo Image-->
-      <h1><a href="index.html">VOCO Blog</a></h1>
+      <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
     </div>
 
-    <div>
-      <a href="login.html">Login</a>
-      <a href="register.html">Register</a>
+    <div class="headbox">
+      <a href="index.html">Back</a>
     </div>
   </nav>
 </header>
@@ -41,13 +42,68 @@
 
 <div class="column">
   <div class="card">
-    <h2>Your Posts:</h2>
+    <h2>Your Posts</h2>
+    <div class="post-entry">
+      <div class="post-preview">
+        <h3 style="float:left;">A Blog Title</h3>
+        <h3 style="float:right;">John Doe</h3>
+      </div>
+      <div class="entry-buttons">
+        <button>View</button>
+        <button>Edit</button>
+        <button>Delete</button>
+      </div>
+    </div>
+
+    <div class="post-entry">
+      <div class="post-preview">
+        <h3 style="float:left;">A Blog Title</h3>
+        <h3 style="float:right;">John Doe</h3>
+      </div>
+      <div class="entry-buttons">
+        <button>View</button>
+        <button>Edit</button>
+        <button>Delete</button>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="card" id="your-profile">
+    <h2>Your Profile</h2>
+    <div class="profile-contents">
+      <img class="profile-pic" src="">
+      <p>Name:</p>
+      <p>Bio:</p>
+      <p>Email:</p>
+      <p>Account Status</p>
+    </div>
+    <div id="profile-buttons">
+      <button>Delete Account</button>
+      <button>Edit Profile</button>
+    </div>
+
   </div>
   <div class="card">
-    <h2>Your Profile:</h2>
-  </div>
-  <div class="card">
-    <h2>Saved Posts:</h2>
+    <h2>Saved Posts</h2>
+    <div class="post-entry">
+      <div class="post-preview">
+        <h3 style="float:left;">A Blog Title</h3>
+        <h3 style="float:right;">John Doe</h3>
+      </div>
+      <div class="entry-buttons">
+        <button>Unsave</button>
+      </div>
+    </div>
+    <div class="post-entry">
+      <div class="post-preview">
+        <h3 style="float:left;">A Blog Title</h3>
+        <h3 style="float:right;">John Doe</h3>
+      </div>
+      <div class="entry-buttons">
+        <button>Unsave</button>
+      </div>
+    </div>
   </div>
 </div>
 <footer>

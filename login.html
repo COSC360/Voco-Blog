@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/login.css">
+
 </head>
 
 <body>
@@ -23,28 +25,21 @@
       </div>
     </nav>
   </header>
-  <div class="column">
-    <div id="left">
-      <div class="articleContainer">
-        <form action="">
-          <fieldset>
-              <legend>Login</legend>
+  <div class="singleColumn">
+        <form action="" class="user-form">
               <div>
-                  <label for="email">Email:</label>
+                  <label for="email">Email</label>
                   <input required type="email" id="email" placeholder="example@webmail.com">
               </div>
               <div>
-                  <label for="password">Password:</label>
+                  <label for="password">Password</label>
                   <input required type="password" id="password" placeholder="Enter Your Password">
+                <button type="submit">Login</button>
               </div>
-              <button type="submit">Login</button>
-          </fieldset>
       </form>
-      </div>
-    </div>
   </div>
   <footer>
-
+    <p> New User ? <a href="register.html"> Register here</a></p>
   </footer>
   <script src="js/main.js"></script>
 </body>
