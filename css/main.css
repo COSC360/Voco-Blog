@@ -12,13 +12,31 @@ button {
     border-radius: 2em;
 }
 
+h1,h2,h3,p,a,button,legend,label {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+/* User forms*/
+.user-form {
+    display: flex;
+    flex-direction: column;
+    padding: 2em 2em;
+}
+
+.user-form input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
 /*Page navigation*/
 .navbar {
-    display: flex;
-    justify-content: space-between;
+    display: inline-flex;
+    justify-content: space-around;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-    margin: 0 5%;
+    margin: 0 1em;
     padding: 2em;
+    height: 5em;
+
 }
 .navbar a{
     text-decoration: none;
@@ -32,7 +50,8 @@ button {
     width: 50%;
     margin-top: 5%;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-    height: 300px;
+    height: auto;
+
 }
 .singleColumn .body {
     margin:5%;
@@ -46,24 +65,53 @@ button {
 }
 .column .card {
     width: 60%;
-    margin: 5%;
+    margin: 1em;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
     height: 500px;
 }
 
 .column #left {
-    width: 75%;
-    margin: 5%;
+    width: 100%;
+    margin: 1em;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+
 }
 .column #left h2{
     margin:5%
 }
 .column #right {
     width: 25%;
-    margin: 5%;
+    margin: 1em;
     padding: 5%;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+/*Header elements at the top of page*/
+
+.headbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/*TODO: Generalize spacing around flex elememts, force attempt to adding spacing on <a> links in login/register*/
+.headbox a {
+    margin: 0.5em;
+}
+
+.headbox a:hover{
+    color: blue;
+}
+
+#search {
+    display: flex;
+    flex-direction: row;
+    padding: none;
+}
+
+.logo {
+    width: 25%;
+    height: auto;
 }
 
 /*Filter groups*/
@@ -77,20 +125,43 @@ button {
 }
 /*Blog Post Container*/
 .articleContainer{
-    margin: 5%;
     border-top: solid thin lightgrey;
+    overflow: scroll;
+    height: 40em;
+    white-space: nowrap;
 }
-.articleContainer .article{
-    border-bottom: solid thin lightgrey;
-}
+
 /*TODO: Update spacing & styling */
-.articleContainer .article h2 {
-
-}
-.articleContainer .article p{
-
-}
 /*Blog Post*/
-.article{
+.entry{
+    overflow: hidden;
+    padding: 1em;
+    margin: 1em 0.5em 1em 0.5em;
+    border: black thin solid;
+    height: 14em;
 
+}
+
+.blog-title p {
+    vertical-align: middle;
+    padding: 0em 1em 0em 1em;
+}
+.blog-preview{
+    padding: 0.5em;
+    float: left;
+    overflow: hidden;
+
+}
+
+.entry figure {
+    border: black thin solid;
+    float: right;
+    position: relative;
+    height: 13em;
+    width: 13em;
+}
+
+
+.blog-preview {
+    float: left;
 }

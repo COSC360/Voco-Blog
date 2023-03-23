@@ -2,62 +2,57 @@
 <html class="no-js" lang="">
 
 <head>
-    <meta charset="utf-8">
-    <title>VOCO Blog - Register</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
+  <meta charset="utf-8">
+  <title>VOCO Blog - Login Page</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-<header>
+  <header>
     <nav class="navbar">
-        <div>
 
-        </div>
+      <div class="headbox">
+        <!--TODO: Include Logo Image-->
+        <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
+      </div>
 
-        <div>
-            <!--TODO: Include Logo Image-->
-            <a href="index.html">VOCO Blog</a>
-        </div>
-
-        <div>
-
-        </div>
+      <div class="headbox">
+        <a href="index.html">Back</a>
+      </div>
     </nav>
-</header>
-<div class="singleColumn">
-    <div class="body">
-        <form action="">
-            <fieldset>
-                <!--TODO: Center-->
-                <legend>Create An Account: </legend>
-                <div>
-                    <label for="name">Screen Name:</label>
-                    <input required type="text" id="name" placeholder="VocoCrusher12">
-                </div>
-                <div>
-                    <label for="email">Email:</label>
-                    <input required type="email" id="email" placeholder="example@webmail.com">
-                </div>
-                <div>
-                    <label for="password">Password:</label>
-                    <input required type="password" id="password" placeholder="Enter Your Password">
-                </div>
-                <div>
-                    <label for="verifyPassword">Confirm Password:</label>
-                    <input required type="password" id="verifyPassword" placeholder="Verify Password">
-                </div>
+  </header>
+  <div class="singleColumn">
+        <form action="" class="user-form">
+              <div>
+                  <label for="first-name">First Name</label>
+                  <input id="first-name" placeholder="John">
+              </div>
+              <div>
+                  <label for="last-name">Last Name</label>
+                  <input id="last-name" placeholder="John">
+              </div>
+              <div>
+                  <label for="email">Email</label>
+                  <input required type="email" id="email" placeholder="example@webmail.com">
+              </div>
+              <div>
+                  <label for="password">Password</label>
+                  <input required type="password" id="password" placeholder="Enter Your Password">
+              </div>
+              <div>
+                  <label for="verifyPassword">Confirm Password</label>
+                  <input required type="password" id="verifyPassword" placeholder="Verify Password">
+                  <button type="submit">Register</button>
 
-                <button type="submit">Register</button>
-            </fieldset>
-        </form>
-    </div>
-</div>
-<footer>
+                </div>
+      </form>
+  </div>
+  <footer>
 
-</footer>
-<script src="js/main.js"></script>
+  </footer>
+  <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,30 @@
+/* The side navigation menu */
+.column .card {
+    width: 60%;
+    margin: 1em;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    height: 500px;
+}
+
+#sidenav {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+#sidenav a {
+    margin: 2em;
+}
+
+#rightnav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+}
+
+#rightnav p {
+    margin: 3em;
+}
+

@@ -2,57 +2,46 @@
 <html class="no-js" lang="">
 
 <head>
-    <meta charset="utf-8">
-    <title>VOCO Blog - Login</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
+  <meta charset="utf-8">
+  <title>VOCO Blog - Login Page</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/login.css">
+
 </head>
 
 <body>
-<header>
+  <header>
     <nav class="navbar">
-        <div>
 
-        </div>
+      <div class="headbox">
+        <!--TODO: Include Logo Image-->
+        <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
+      </div>
 
-        <div>
-            <!--TODO: Include Logo Image-->
-            <a href="index.html">VOCO Blog</a>
-        </div>
-
-        <div>
-
-        </div>
+      <div class="headbox">
+        <a href="index.html">Back</a>
+      </div>
     </nav>
-</header>
-<!--TODO: Center-->
-<div class="singleColumn">
-    <div class="body">
-        <form action="">
-            <fieldset>
-                <legend>Login</legend>
-                <div>
-                    <label for="email">Email:</label>
-                    <input required type="email" id="email" placeholder="example@webmail.com">
-                </div>
-                <div>
-                    <label for="password">Password:</label>
-                    <input required type="password" id="password" placeholder="Enter Your Password">
-                </div>
+  </header>
+  <div class="singleColumn">
+        <form action="" class="user-form">
+              <div>
+                  <label for="email">Email</label>
+                  <input required type="email" id="email" placeholder="example@webmail.com">
+              </div>
+              <div>
+                  <label for="password">Password</label>
+                  <input required type="password" id="password" placeholder="Enter Your Password">
                 <button type="submit">Login</button>
-            </fieldset>
-        </form>
-    </div>
-
-
-
-
-</div>
-<footer>
-
-</footer>
-<script src="js/main.js"></script>
+              </div>
+      </form>
+  </div>
+  <footer>
+    <p> New User ? <a href="register.html"> Register here</a></p>
+  </footer>
+  <script src="js/main.js"></script>
 </body>
 
 </html>
