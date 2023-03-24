@@ -2,7 +2,7 @@
 include('db_info.php');
 
 
-function open_connection(){
+function connect(){
     try {
         $connString = "mysql:host=".DBHOST.";dbname=".DBNAME;
         $pdo = new PDO($connString, DBUSER, DBPASS);
@@ -16,6 +16,7 @@ function open_connection(){
 function close_connection($conn){
     $conn -> close();
 }
+
 
 ?>
 

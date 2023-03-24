@@ -21,25 +21,25 @@
       </div>
 
       <div class="headbox">
-        <a href="index.html">Back</a>
+        <a href="index.php">Back</a>
       </div>
     </nav>
   </header>
   <div class="singleColumn">
-        <form action="" class="user-form">
+        <form action="./php/login.php" method="POST" class="user-form">
               <div>
-                  <label for="email">Email</label>
-                  <input required type="email" id="email" placeholder="example@webmail.com">
+                  <label for="loginuser">Username or Email</label>
+                  <input name="loginuser" id="loginuser" placeholder="example@webmail.com">
               </div>
               <div>
                   <label for="password">Password</label>
-                  <input required type="password" id="password" placeholder="Enter Your Password">
+                  <input name="password" required type="password" id="password" placeholder="Enter Your Password">
                 <button type="submit">Login</button>
               </div>
       </form>
   </div>
   <footer>
-    <p> New User ? <a href="register.html"> Register here</a></p>
+    <p> New User ? <a href="register.php"> Register here</a></p>
   </footer>
   <script src="js/main.js"></script>
 </body>

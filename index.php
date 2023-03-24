@@ -1,6 +1,18 @@
 <!doctype html>
 <html class="no-js" lang="">
+<?php
 
+session_start();
+
+if(isset($_SESSION["username"])){
+  $username = $_SESSION["username"];
+}
+
+if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true ) {
+  $loggedIn = true;
+}
+
+?>
 <head>
   <meta charset="utf-8">
   <title>VOCO Blog - Home</title>
@@ -8,7 +20,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
-
 <body>
   <header>
     <nav class="navbar">
@@ -25,10 +36,14 @@
         <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
       </div>
 
-      <div class="headbox">
-        <a href="login.html">Login</a>
-        <a href="register.html">Register</a>
-      </div>
+      <?php
+      if($loggedIn) {
+        echo "<div class=\"headbox\"><a href=\"profile.html\">".$username."</a><a href=\"register.html\">Log out</a></div>";
+      } else {
+        echo "<div class=\"headbox\"><a href=\"login.html\">Login</a><a href=\"register.html\">Register</a></div>";
+      }
+      ?>
+
     </nav>
   </header>
   <div class="column">
@@ -115,5 +130,4 @@
   </footer>
   <script src="js/main.js"></script>
 </body>
-
 </html>
