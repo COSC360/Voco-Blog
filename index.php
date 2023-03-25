@@ -12,6 +12,7 @@ $blogs = $conn->query($sql);
 // Get all categories
 $sql = "SELECT * FROM Category";
 $categories = $conn->query($sql);
+$conn = null;
 
 session_start();
 
