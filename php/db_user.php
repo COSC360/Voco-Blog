@@ -2,7 +2,7 @@
 include("db_connection.php");
 
 // opens connection
-$pdo = open_connection();
+$pdo = connect();
 
 $sql = "SELECT * from Users";
 
