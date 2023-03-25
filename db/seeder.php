@@ -3,6 +3,12 @@ include("../php/db_connection.php");
 
 $conn = connect();
 
+$conn -> exec("DELETE FROM blogCategory");
+$conn -> exec("DELETE FROM Comments");
+$conn -> exec("DELETE FROM Blogs");
+$conn -> exec("DELETE FROM Users");
+$conn -> exec("DELETE FROM Roles");
+
 $roles = array(
     array('role_name' => 'user'),
     array('role_name' => 'admin'),
