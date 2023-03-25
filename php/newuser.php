@@ -37,13 +37,13 @@
         } else {
 
         //Insert new user into the database
-        $sql = "INSERT INTO Users (username,role_name,first_name, last_name, email, password) VALUES (?,?,?,?,?,?)";
+        $sql = "INSERT INTO Users (username,role_id,first_name, last_name, email, password) VALUES (?,?,?,?,?,?)";
 
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(1,$username);
 
         //Set default role to 'user'
-        $role = "user";
+        $role = "1";
         $stmt->bindValue(2,$role);
 
         $stmt->bindValue(3,$firstname);

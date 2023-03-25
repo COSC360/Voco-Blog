@@ -114,6 +114,15 @@ h1,h2,h3,p,a,button,legend,label {
     height: auto;
 }
 
+#createPost {
+    display: flex;
+    align-items: center;
+}
+
+#createPost button {
+
+}
+
 /*Filter groups*/
 .filterGroup {
 }

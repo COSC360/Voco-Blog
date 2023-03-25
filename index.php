@@ -12,6 +12,7 @@ if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true ) {
   $loggedIn = true;
 }
 
+
 ?>
 <head>
   <meta charset="utf-8">
@@ -38,7 +39,7 @@ if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true ) {
 
       <?php
       if($loggedIn) {
-        echo "<div class=\"headbox\"><a href=\"profile.html\">".$username."</a><a href=\"register.html\">Log out</a></div>";
+        echo "<div class=\"headbox\"><a href=\"profile.html\">".$username."</a><a href=\"/vocoblog/php/logout.php\">Log out</a></div>";
       } else {
         echo "<div class=\"headbox\"><a href=\"login.html\">Login</a><a href=\"register.html\">Register</a></div>";
       }
@@ -113,6 +114,9 @@ if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true ) {
       </div>
     </div>
     <div id="right">
+      <div id="createPost">
+        <button>Create Post</button>
+      </div>
       <div class="filterGroup">
         <fieldset>
           <legend>Filters</legend>
