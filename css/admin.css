@@ -17,6 +17,10 @@
     margin: 2em;
 }
 
+#sidenav a:hover {
+    color: blue;
+}
+
 #rightnav {
     width: 100%;
     display: flex;
