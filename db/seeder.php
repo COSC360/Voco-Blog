@@ -18,18 +18,26 @@ foreach ($roles as $role) {
     $conn->query($sql);
 }
 $users = array(
-    array('username' => 'loggylog', 'role_id' => 1, 'first_name' => 'log', 'last_name' => 'par', 'email' => 'johndoe@example.com', 'password' => 'password123'),
-    array('username' => 'eddyed', 'role_id' => 2, 'first_name' => 'ed', 'last_name' => 'el', 'email' => 'janedoe@example.com', 'password' => 'password123'),
-    array('username' => 'bobsmith', 'role_id' => 1, 'first_name' => 'Bob', 'last_name' => 'Smith', 'email' => 'bobsmith@example.com', 'password' => 'password123')
+    array('username' => 'loggylog', 'role_id' => 1, 'first_name' => 'log', 'last_name' => 'par', 'email' => 'johndoe@example.com', 'password' => md5('password123')),
+    array('username' => 'eddyed', 'role_id' => 2, 'first_name' => 'ed', 'last_name' => 'el', 'email' => 'janedoe@example.com', 'password' => md5('password123')),
+    array('username' => 'bobsmith', 'role_id' => 1, 'first_name' => 'Bob', 'last_name' => 'Smith', 'email' => 'bobsmith@example.com', 'password' => md5('password123'))
 );
 foreach ($users as $user) {
     $sql = "INSERT INTO Users (username, role_id, first_name, last_name, email, password) VALUES ('" . $user['username'] . "', " . $user['role_id'] . ", '" . $user['first_name'] . "', '" . $user['last_name'] . "', '" . $user['email'] . "', '" . $user['password'] . "')";
     $conn->query($sql);
 }
 $blogs = array(
-    array('user_id' => 1, 'blog_title' => 'My First Blog', 'blog_createdAt' => '2022-01-01 10:00:00', 'blog_modifiedAt' => '2022-01-01 10:30:00', 'blog_img' => 'blog1.jpg', 'blog_contents' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'like_count' => 10),
-    array('user_id' => 2, 'blog_title' => 'My Second Blog', 'blog_createdAt' => '2022-02-01 10:00:00', 'blog_modifiedAt' => '2022-02-01 10:30:00', 'blog_img' => 'blog2.jpg', 'blog_contents' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.', 'like_count' => 20),
-    array('user_id' => 3, 'blog_title' => 'My Third Blog', 'blog_createdAt' => '2022-03-01 10:00:00', 'blog_modifiedAt' => '2022-03-01 10:30:00', 'blog_img' =>'blog3.jpg', 'blog_contents' => 'Donec ac quam vitae leo consequat maximus at vel ipsum.', 'like_count' => 5)
+    array('user_id' => 2, 'blog_title' => 'Japan!!!', 'blog_createdAt' => '2022-01-01 10:00:00', 'blog_modifiedAt' => '2022-01-01 10:30:00', 'blog_img' => 'img/japan.png', 'blog_contents' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'like_count' => 10),
+    array('user_id' => 1, 'blog_title' => 'brewbrewbrew', 'blog_createdAt' => '2022-02-01 10:00:00', 'blog_modifiedAt' => '2022-02-01 10:30:00', 'blog_img' => 'img/eddyed.jpg', 'blog_contents' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.', 'like_count' => 20),
+    array('user_id' => 3, 'blog_title' => 'My Third Blog', 'blog_createdAt' => '2022-03-01 10:00:00', 'blog_modifiedAt' => '2022-03-01 10:30:00', 'blog_img' =>'', 'blog_contents' => 'Donec ac quam vitae leo consequat maximus at vel ipsum.', 'like_count' => 5)
 );
 foreach ($blogs as $blog) {
     $sql = "INSERT INTO Blogs (user_id, blog_title, blog_createdAt, blog_modifiedAt, blog_img, blog_contents, like_count) VALUES (" . $blog['user_id'] . ", '" . $blog['blog_title'] . "', '" . $blog['blog_createdAt'] . "', '" . $blog['blog_modifiedAt'] . "', '" . $blog['blog_img'] . "', '" . $blog['blog_contents'] . "', " . $blog['like_count'] . ")";
@@ -59,8 +67,8 @@ foreach ($categories as $category) {
 $blogCategories = array(
     array('category_id' => 1, 'blog_id' => 1),
     array('category_id' => 2, 'blog_id' => 1),
-    array('category_id' => 2, 'blog_id' => 2),
     array('category_id' => 3, 'blog_id' => 2),
+    array('category_id' => 4, 'blog_id' => 2),
     array('category_id' => 4, 'blog_id' => 3)
 );
 foreach ($blogCategories as $blogCategory) {

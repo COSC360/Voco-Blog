@@ -71,7 +71,7 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
                 if(isset($row['blog_img'])){
                     echo "<figure><img src=".$row['blog_img']." height=\"100%\" width=\"100%\"></figure>";
                 }
-                echo "<div class='blog-title'><h3>".$row['blog_title']." - By ".$row['username']."</h3></div>";
+                echo "<div class='blog-title'><h3><a href='post.php?blog_id=" . $row['blog_id'] . "'>".$row['blog_title']." - By ".$row['username']."</a></h3></div>";
                 echo "<div class='blog-preview'><p>". substr($row['blog_contents'], 0, 100)."</p></div>";
                 echo "</div>";
             }

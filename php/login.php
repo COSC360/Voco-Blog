@@ -17,7 +17,7 @@
     //Hash user password for a match in db
     $user_password = md5($user_password);
 
-    $sql = "SELECT username,password FROM Users WHERE username=? AND password=?";
+    $sql = "SELECT username,password, user_id FROM Users WHERE username=? AND password=?";
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(1,$userinfo);
@@ -31,7 +31,7 @@
 
         // Initialize session
         session_start();
-
+        $_SESSION["active_user_id"] = $result['user_id'];
         $_SESSION["username"] = $result["username"];
         $_SESSION["loggedIn"] = true;
 
