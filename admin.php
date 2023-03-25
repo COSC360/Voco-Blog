@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/main.css">å
   <link rel="stylesheet" href="css/admin.css">
+  <script type="text/javascript" src="js/admin.js"></script>
+
 
 </head>
 
@@ -20,7 +22,7 @@
     </div>
 
     <div class="headbox">
-      <a href="index.html">Back</a>
+      <a href="index.php">Back</a>
     </div>
   </nav>
 </header>
@@ -33,14 +35,31 @@
 
 <div class="column">
   <div class="card" id="sidenav">
-    <a>Manage Users</a>
-    <a>Manage Posts</a>
-    <a>Manage Admins</a>
-    <a>Profile</a>
+    <a id="manageuser">Manage Users</a>
+    <a id="manageblogpost">Manage Blogs</a>
+    <a id="manageadmin">Manage Admins</a>
   </div>
+
+  <script>
+    document.getElementById("manageuser").addEventListener("click", function () {
+        userTableRequest("user");
+    })
+    document.getElementById("manageblogpost").addEventListener("click", function() {
+        userTableRequest("blog");
+    });
+    document.getElementById("manageadmin").addEventListener("click", function() {
+        userTableRequest("admin")
+    });
+
+  </script>
+
+
 
 <div class="card" id="rightnav">
   <h2>Dashboard</h2>
+  <div id="table">
+  </div>
+
 
 </div>
 </div>
