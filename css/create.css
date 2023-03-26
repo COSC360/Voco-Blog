@@ -1,0 +1,35 @@
+#contentCreation {
+    border-top: solid thin lightgrey;
+    overflow: scroll;
+    height: 100%;
+    white-space: nowrap;
+}
+
+#blogText {
+    margin-left: 15%;
+    margin-right: 10%;
+    padding: 0em;
+    height: 20em;
+    width: 75%;
+    font-size: 18px;
+}
+
+#createPostButton {
+    position: relative;
+}
+
+#postInputs {
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    height: 60em;
+    flex-direction: column;
+    padding: 2em 2em;
+    background-color: lightgray;
+
+}
+
+.postInput {
+    font-size: 18px;
+    margin: 2em 2em;
+}
