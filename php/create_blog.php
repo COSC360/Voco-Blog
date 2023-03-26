@@ -53,7 +53,11 @@
 
     $result = $stmt->execute([$catagories,$new_blog_id]);
 
-    echo "good!";
+    //Redirect
+    header("Location: ../index.php");
+
+
+
 
 
 ?>

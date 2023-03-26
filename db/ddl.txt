@@ -20,7 +20,7 @@ user_id INT,
 blog_title VARCHAR(50),
 blog_createdAt DATETIME,
 blog_modifiedAt DATETIME,
-blog_img VARCHAR(50),
+blog_img BLOB,
 blog_contents TEXT,
 like_count INT,
 FOREIGN KEY (user_id) REFERENCES Users(user_id)

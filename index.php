@@ -90,7 +90,7 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
     </div>
     <div id="right">
         <div id="createPost">
-            <button>Create Post</button>
+           <a href="create.html"><button>Create Post</button><a>
         </div>
         <div class="filterGroup">
             <fieldset>

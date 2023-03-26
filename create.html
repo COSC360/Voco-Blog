@@ -7,68 +7,56 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/create.css">
+
 </head>
 
 <body>
 <header>
     <nav class="navbar">
-        <div>
-            <form action="">
-                <label>
-                    <input type="text" placeholder="Search.." name="search">
-                </label>
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
+
+        <div class="headbox">
+          <!--TODO: Include Logo Image-->
+          <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
         </div>
 
-        <div>
-            <!--TODO: Include Logo Image-->
-            <h1><a href="#">VOCO Blog</a></h1>
+        <div class="headbox">
+          <a href="index.php">Back</a>
         </div>
-
-        <div>
-            <a href="profile.html">Username</a>
-            <a href="#">logout</a>
-        </div>
-    </nav>
+      </nav>
 </header>
-<form action="" method="post">
+<form action="php/create_blog.php" method="post" enctype="multipart/form-data">
     <div class="column">
         <div id="left">
             <h2>Create A Post:</h2>
-            <div id="contentCreation">
                 <label>
-                    <input type="text">
+                    <textarea id="blogText" name="blog_contents" type="text" cols="10" rows="5" >
+                    </textarea>
                 </label>
-            </div>
         </div>
         <div id="right">
-            <div>
-                <fieldset>
-                    <legend>Post Content</legend>
-                    <div>
-                        <label for="postTitle">Post Title:</label>
-                        <input required type="text" id="postTitle" name="postTitle">
-                    </div>
-                    <div>
-                        <label for="categories">Select Post Categories</label>
-                        <select name="categories" id="categories">
-                            <option>Climb</option>
-                            <option>Hike</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="bannerImage">Upload Cover Image:</label>
-                        <input type="file" id="bannerImage">
-                    </div>
-                    <div>
-                        <label>
-                            <button type="submit">Create Post</button>
-                        </label>
-                    </div>
-                </fieldset>
-            </div>
-
+            <div id="postInputs">
+                <div class="postInput">
+                    <label type="text" for="postTitle">Post Title:</label>
+                    <input required type="text" id="postTitle" name="post_title">
+                </div>
+                <div class="postInput">
+                    <label for="categories">Select Post Categories</label>
+                    <select name="categories" id="categories" type="dropdown">
+                        <option value="1">Climb</option>
+                        <option value="2">Hike</option>
+                    </select>
+                </div>
+                <div class="postInput">
+                    <label for="bannerImage">Upload Cover Image:</label>
+                    <input type="file" name="cover_img" id="bannerImage">
+                </div>
+                <div class="postInput">
+                    <label id="createPostButton">
+                        <button type="submit">Create Post</button>
+                    </label>
+                </div>
+                </div>
         </div>
     </div>
 </form>

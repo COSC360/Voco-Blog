@@ -39,7 +39,7 @@
             FROM Blogs blog
             INNER JOIN Users user ON blog.user_id = user.user_id
             JOIN blogCategory bc on blog.blog_id = bc.blog_id
-            JOIN Category category ON bc.category_id = category.category_id 
+            JOIN Category category ON bc.category_id = category.category_id
             WHERE blog.blog_id = :blog_id";
     $stmt = $conn->prepare($sql);
     $stmt->execute(['blog_id' => $blog_id]);
