@@ -108,7 +108,8 @@ $user = $stmt->fetch();
 
         </div>
         <div id="profile-buttons">
-            <button>Delete Account</button>
+            <a href='php/delete_user.php?user_id=<?php echo $_SESSION['active_user_id']?>'><button>Delete Account</button></a>
+            <!--TODO: implement this-->
             <button>Edit Profile</button>
         </div>
 

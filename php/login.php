@@ -33,7 +33,7 @@
 
     if($result) {
         echo "<p>User has a valid account</p>";
-        if($result["role_id"] = 2) {
+        if($result["role_id"] == 2) {
             $_SESSION["isAdmin"] = true;
         } else {
             $_SESSION["isAdmin"] = false;
@@ -47,7 +47,8 @@
        header("Location: ../index.php");
 
     } else {
-        echo "<p>User account is invalid<p>";
+        // Update this with invalid login info later
+        header("Location: ../login.html");
     }
 
     $pdo = null;
