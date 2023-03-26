@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['active_user_id'])) {
-    header('Location: ../login.html');
+    header('Location: ../login.php');
     exit();
 }
 include('db_connection.php');
@@ -53,7 +53,7 @@ if (isset($_GET['user_id'])) {
     $conn = null;
     exit();
 } else {
-   // header('Location: ../index.php');
+    header('Location: ../index.php');
     $conn = null;
     exit();
 }

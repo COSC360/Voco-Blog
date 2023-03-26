@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['active_user_id'])){
-    header('Location: ../login.html');
+    header('Location: ../login.php');
     exit();
 }
 include('db_connection.php');

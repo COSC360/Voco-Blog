@@ -48,7 +48,7 @@
 
     } else {
         // Update this with invalid login info later
-        header("Location: ../login.html");
+        header("Location: ../login.php");
     }
 
     $pdo = null;
