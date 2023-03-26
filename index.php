@@ -89,9 +89,12 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
         </div>
     </div>
     <div id="right">
-        <div id="createPost">
-           <a href="create.html"><button>Create Post</button><a>
-        </div>
+        <div id="sideOptions">
+        <?php
+        if($loggedIn) {
+            echo "<div id=\"createPost\"><a href=\"create.html\"><button>Create Post</button><a></div>";
+        }
+        ?>
         <div class="filterGroup">
             <fieldset>
                 <legend>Filters</legend>
@@ -102,6 +105,7 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
                 ?>
             </fieldset>
         </div>
+            </div>
 
     </div>
 </div>

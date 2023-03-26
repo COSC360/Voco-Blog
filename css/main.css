@@ -61,7 +61,6 @@ h1,h2,h3,p,a,button,legend,label {
 .column {
     display: flex;
     flex-direction: row;
-
 }
 .column .card {
     width: 60%;
@@ -114,13 +113,22 @@ h1,h2,h3,p,a,button,legend,label {
     height: auto;
 }
 
-#createPost {
+#sideOptions {
     display: flex;
     align-items: center;
+    flex-direction: column;
+}
+#createPost {
+    height: 5em;
 }
 
 #createPost button {
-
+    align-self: center;
+    height: 50%;
+    width: 100%;
+}
+#createPost button:hover {
+    background-color: lightblue;
 }
 
 /*Filter groups*/
