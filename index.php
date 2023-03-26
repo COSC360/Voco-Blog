@@ -42,6 +42,9 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
 <header>
     <nav class="navbar">
         <div class="headbox">
+            <a href="index.php">Home</a>
+        </div>
+        <div class="headbox">
             <form action="search.php" method="GET" id="search">
                 <label>
                     <input id="search_query" name="search" type="text" placeholder="Search..">

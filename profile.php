@@ -48,6 +48,9 @@ $user = $stmt->fetch();
 <header>
     <nav class="navbar">
         <div class="headbox">
+            <a href="index.php">Home</a>
+        </div>
+        <div class="headbox">
             <form action="search.php" method="GET" id="search">
                 <label>
                     <input id="search_query" name="search" type="text" placeholder="Search..">
@@ -94,17 +97,6 @@ $user = $stmt->fetch();
             echo "</div></div>";
         }
         ?>
-<!--        <div class="post-entry">-->
-<!--            <div class="post-preview">-->
-<!--                <h3 style="float:left;">A Blog Title</h3>-->
-<!--                <h3 style="float:right;">John Doe</h3>-->
-<!--            </div>-->
-<!--            <div class="entry-buttons">-->
-<!--                <button>View</button>-->
-<!--                <button>Edit</button>-->
-<!--                <button>Delete</button>-->
-<!--            </div>-->
-<!--        </div>-->
     </div>
     <div class="card" id="your-profile">
         <h2>Your Profile</h2>

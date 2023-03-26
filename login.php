@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
+    header('Location: index.php');
+}
+?>
 <!doctype html>
 <html class="no-js" lang="">
 
@@ -26,7 +32,7 @@
     </nav>
   </header>
   <div class="singleColumn">
-        <form action="./php/login.php" method="POST" class="user-form">
+        <form action="./php/login_handler.php" method="POST" class="user-form">
               <div>
                   <label for="loginuser">Username or Email</label>
                   <input name="loginuser" id="loginuser" placeholder="example@webmail.com">

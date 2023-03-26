@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="">
 <?php
+    session_start();
     $username = null;
     $loggedIn = null;
     $isAdmin = null;
@@ -72,6 +73,9 @@
 <body>
 <header>
     <nav class="navbar">
+        <div class="headbox">
+            <a href="index.php">Home</a>
+        </div>
         <div class="headbox">
             <form action="search.php" method="GET" id="search">
                 <label>
@@ -187,7 +191,7 @@
         </div>
     </div>
 <footer>
-
+<a>Back</a>
 </footer>
 <script src="js/main.js"></script>
 </body>
