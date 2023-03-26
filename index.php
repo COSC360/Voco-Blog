@@ -1,121 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!doctype html>
 <html class="no-js" lang="">
 <?php
@@ -174,9 +56,9 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
 
         <?php
         if ($loggedIn && $isAdmin) {
-            echo "<div class=\"headbox\"><a href=\"admin.php\">".$username. "</a><a href=\"/vocoblog/php/logout.php\">Log out</a></div>";
-        }elseif ($loggedIn && !$isAdmin){
-            echo "<div class=\"headbox\"><a href=\"profile.html\">".$username. "</a><a href=\"/vocoblog/php/logout.php\">Log out</a></div>";
+            echo "<div class=\"headbox\"><a href=\"admin.php\">Admin</a><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
+        }elseif ($loggedIn){
+            echo "<div class=\"headbox\"><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
         } else {
             echo "<div class=\"headbox\"><a href=\"login.html\">Login</a><a href=\"register.html\">Register</a></div>";
         }

@@ -106,7 +106,7 @@ h1,h2,h3,p,a,button,legend,label {
 #search {
     display: flex;
     flex-direction: row;
-    padding: none;
+    padding: 0;
 }
 
 .logo {
