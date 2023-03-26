@@ -7,6 +7,7 @@
 
     unset($_SESSION['active_user_id']);
     unset($_SESSION["username"]);
+    unset($_SESSION["isAdmin"]);
     $_SESSION["loggedIn"] = false;
 
 

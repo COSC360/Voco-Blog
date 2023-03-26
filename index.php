@@ -1,3 +1,121 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!doctype html>
 <html class="no-js" lang="">
 <?php
@@ -16,12 +134,17 @@ $conn = null;
 
 session_start();
 
+$username = null;
+$loggedIn = null;
+$isAdmin = null;
+
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
 }
 
 if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
     $loggedIn = true;
+    $isAdmin = $_SESSION["isAdmin"];
 }
 
 
@@ -50,8 +173,10 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
         </div>
 
         <?php
-        if ($loggedIn) {
-            echo "<div class=\"headbox\"><a href=\"profile.html\">" . $username . "</a><a href=\"/vocoblog/php/logout.php\">Log out</a></div>";
+        if ($loggedIn && $isAdmin) {
+            echo "<div class=\"headbox\"><a href=\"admin.php\">".$username. "</a><a href=\"/vocoblog/php/logout.php\">Log out</a></div>";
+        }elseif ($loggedIn && !$isAdmin){
+            echo "<div class=\"headbox\"><a href=\"profile.html\">".$username. "</a><a href=\"/vocoblog/php/logout.php\">Log out</a></div>";
         } else {
             echo "<div class=\"headbox\"><a href=\"login.html\">Login</a><a href=\"register.html\">Register</a></div>";
         }
