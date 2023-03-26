@@ -51,7 +51,7 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
 
         <?php
         if ($loggedIn) {
-            echo "<div class=\"headbox\"><a href=\"profile.html\">" . $username . "</a><a href=\"/vocoblog/php/logout.php\">Log out</a></div>";
+            echo "<div class=\"headbox\"><a href=\"profile.html\">" . $username . "</a><a href=\"/voco-blog/php/logout.php\">Log out</a></div>";
         } else {
             echo "<div class=\"headbox\"><a href=\"login.html\">Login</a><a href=\"register.html\">Register</a></div>";
         }
@@ -72,7 +72,7 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
                     echo "<figure><img src=".$row['blog_img']." height=\"100%\" width=\"100%\"></figure>";
                 }
                 echo "<div class='blog-title'><h3><a href='post.php?blog_id=" . $row['blog_id'] . "'>".$row['blog_title']." - By ".$row['username']."</a></h3></div>";
-                echo "<div class='blog-preview'><p>". substr($row['blog_contents'], 0, 100)."</p></div>";
+                echo "<div class='blog-preview'><p>". substr($row['blog_contents'], 0, 100)."...</p></div>";
                 echo "</div>";
             }
             ?>

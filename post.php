@@ -117,11 +117,20 @@
             <div>
                 <fieldset>
                     <legend>Comments</legend>
+                    <?php
+                        if($loggedIn){
+                            echo "<form method='post'>";
+                            echo "<label><input required type='text' name='comment_contents' placeholder='Write a comment...' maxlength='256'></label>";
+                            echo "<button type='submit' name='new_comment'>Submit</button>";
+                            echo "</form>";
+
+                        }
+                    ?>
                     <form method="post">
                         <label>
-                            <input required type="text" name="comment_contents" placeholder="Write a comment..." maxlength="256">
+
                         </label>
-                        <button type="submit" name="new_comment">Submit</button>
+
                     </form>
                     <div class="articleContainer">
                     <?php
