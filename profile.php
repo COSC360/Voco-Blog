@@ -1,21 +1,26 @@
 <!doctype html>
 <html class="no-js" lang="">
 <?php
+include('php/db_connection.php');
+$conn = connect();
 session_start();
-if (isset($_SESSION["active_user_id"])) {
-    $user_id = $_SESSION['active_user_id'];
-}
+
+$username = null;
+$loggedIn = null;
+$isAdmin = null;
+
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
+    $user_id = $_SESSION['active_user_id'];
 }
+
 if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
     $loggedIn = true;
-} else {
+    $isAdmin = $_SESSION["isAdmin"];
+}else {
     header("Location: register.html");
     exit();
 }
-include('php/db_connection.php');
-$conn = connect();
 
 
 // TODO: Update so that filters work - maybe extract to different file?
@@ -33,7 +38,7 @@ $user = $stmt->fetch();
 ?>
 <head>
     <meta charset="utf-8">
-    <title>VOCO Blog - Home</title>
+    <title>VOCO Blog - Profile</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -43,9 +48,9 @@ $user = $stmt->fetch();
 <header>
     <nav class="navbar">
         <div class="headbox">
-            <form action="" id="search">
+            <form action="search.php" method="GET" id="search">
                 <label>
-                    <input type="text" placeholder="Search.." name="search">
+                    <input id="search_query" name="search" type="text" placeholder="Search..">
                 </label>
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
@@ -56,8 +61,10 @@ $user = $stmt->fetch();
         </div>
 
         <?php
-        if ($loggedIn) {
-            echo "<div class=\"headbox\"><a href='profile.php'>" . $username . "</a><a href=\"/voco-blog/php/logout.php\">Log out</a></div>";
+        if ($loggedIn && $isAdmin) {
+            echo "<div class=\"headbox\"><a href=\"admin.php\">Admin</a><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
+        }elseif ($loggedIn){
+            echo "<div class=\"headbox\"><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
         } else {
             echo "<div class=\"headbox\"><a href=\"login.html\">Login</a><a href=\"register.html\">Register</a></div>";
         }

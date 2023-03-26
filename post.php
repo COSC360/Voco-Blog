@@ -1,15 +1,17 @@
 <!doctype html>
 <html class="no-js" lang="">
 <?php
-    session_start();
-    if(isset($_SESSION["active_user_id"])){
-        $user_id = $_SESSION['active_user_id'];
-    }
+    $username = null;
+    $loggedIn = null;
+    $isAdmin = null;
+
     if (isset($_SESSION["username"])) {
         $username = $_SESSION["username"];
     }
+
     if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
         $loggedIn = true;
+        $isAdmin = $_SESSION["isAdmin"];
     }
 
     include('php/db_connection.php');
@@ -71,9 +73,9 @@
 <header>
     <nav class="navbar">
         <div class="headbox">
-            <form action="" id="search">
+            <form action="search.php" method="GET" id="search">
                 <label>
-                    <input type="text" placeholder="Search.." name="search">
+                    <input id="search_query" name="search" type="text" placeholder="Search..">
                 </label>
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
@@ -84,10 +86,12 @@
         </div>
 
         <?php
-        if ($loggedIn) {
-            echo "<div class=\"headbox\"><a href=\"profile.html\">" . $username . "</a><a href=\"/voco-blog/php/logout.php\">Log out</a></div>";
+        if ($loggedIn && $isAdmin) {
+            echo "<div class=\"headbox\"><a href=\"admin.php\">Admin</a><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
+        }elseif ($loggedIn){
+            echo "<div class=\"headbox\"><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
         } else {
-        echo "<div class=\"headbox\"><a href=\"login.html\">Login</a><a href=\"register.html\">Register</a></div>";
+            echo "<div class=\"headbox\"><a href=\"login.html\">Login</a><a href=\"register.html\">Register</a></div>";
         }
         ?>
 

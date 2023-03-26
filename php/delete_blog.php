@@ -11,7 +11,7 @@ $conn = connect();
 if(isset($_GET['blog_id'])) {
     $blog_id = $_GET['blog_id'];
     if($_SESSION['isAdmin']){
-        // get the blog post from the database
+
         $sql = "SELECT * FROM Blogs WHERE blog_id = :blog_id";
         $stmt = $conn->prepare($sql);
         $stmt->execute(['blog_id' => $blog_id]);
