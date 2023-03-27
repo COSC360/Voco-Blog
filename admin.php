@@ -1,7 +1,11 @@
+<<<<<<< Updated upstream
+<?php
+=======
 <?
 error_reporting(E_ALL);
-in_set('display_errors', 1);
+ini_set('display_errors', 1);
 
+>>>>>>> Stashed changes
 session_start();
 
 $username = null;
