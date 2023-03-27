@@ -8,6 +8,7 @@
 
     if (isset($_SESSION["username"])) {
         $username = $_SESSION["username"];
+        $user_id = $_SESSION['active_user_id'];
     }
 
     if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
@@ -95,7 +96,7 @@
         }elseif ($loggedIn){
             echo "<div class=\"headbox\"><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
         } else {
-            echo "<div class=\"headbox\"><a href=\"login.html\">Login</a><a href=\"register.html\">Register</a></div>";
+            echo "<div class=\"headbox\"><a href=\"login.php\">Login</a><a href=\"register.html\">Register</a></div>";
         }
         ?>
 
@@ -114,7 +115,7 @@
                     echo "<figure><img src=".$blog['blog_img']." height=\"50%\" width=\"50%\" alt='Blog image'></figure>";
                 }
                 ?>
-                <p>
+                <p style="white-space: pre-wrap;">
                     <?php
                     echo $blog['blog_contents'];
                     ?>
@@ -134,12 +135,6 @@
 
                         }
                     ?>
-                    <form method="post">
-                        <label>
-
-                        </label>
-
-                    </form>
                     <div class="articleContainer">
                     <?php
                         foreach($comments as $comment){
@@ -164,34 +159,29 @@
                         }
                     ?>
                     </div>
-
-
                 </fieldset>
-                <fieldset>
-                    <legend>Related Posts</legend>
-                    <div class="articleContainer">
-                        <div class="article">
-                            <h3>A Blog title</h3>
-                            <p>This is the first two sentences of a blog post</p>
-                        </div>
-                        <div class="article">
-                            <h3>A Blog title</h3>
-                            <p>This is the first two sentences of a blog post</p>
-
-                        </div>
-                        <div class="article">
-                            <h3>A Blog title</h3>
-                            <p>This is the first two sentences of a blog post</p>
-                        </div>
-                    </div>
-                </fieldset>
-
+<!--                <fieldset>-->
+<!--                    <legend>Related Posts</legend>-->
+<!--                    <div class="articleContainer">-->
+<!--                        <div class="article">-->
+<!--                            <h3>A Blog title</h3>-->
+<!--                            <p>This is the first two sentences of a blog post</p>-->
+<!--                        </div>-->
+<!--                        <div class="article">-->
+<!--                            <h3>A Blog title</h3>-->
+<!--                            <p>This is the first two sentences of a blog post</p>-->
+<!---->
+<!--                        </div>-->
+<!--                        <div class="article">-->
+<!--                            <h3>A Blog title</h3>-->
+<!--                            <p>This is the first two sentences of a blog post</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </fieldset>-->
             </div>
-
         </div>
     </div>
 <footer>
-<a>Back</a>
 </footer>
 <script src="js/main.js"></script>
 </body>

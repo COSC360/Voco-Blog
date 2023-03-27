@@ -70,7 +70,7 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
         }elseif ($loggedIn){
             echo "<div class=\"headbox\"><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
         } else {
-            echo "<div class=\"headbox\"><a href=\"login.html\">Login</a><a href=\"register.html\">Register</a></div>";
+            echo "<div class=\"headbox\"><a href=\"login.php\">Login</a><a href=\"register.html\">Register</a></div>";
         }
         ?>
 

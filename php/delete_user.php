@@ -9,7 +9,6 @@ include('db_connection.php');
 $conn = connect();
 
 // check if comment id is set
-echo var_dump($_GET);
 if (isset($_GET['user_id'])) {
     $user_id = $_SESSION['isAdmin']? $_GET['user_id']:$_SESSION['active_user_id'];
 
