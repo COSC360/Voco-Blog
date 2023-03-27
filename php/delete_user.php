@@ -24,7 +24,7 @@ if (isset($_GET['user_id'])) {
         exit();
     }
     // delete blog from categories
-    $sql = "DELETE FROM BlogCategory WHERE blog_id IN (SELECT blog_id FROM Blogs WHERE user_id = :user_id)";
+    $sql = "DELETE FROM blogCategory WHERE blog_id IN (SELECT blog_id FROM Blogs WHERE user_id = :user_id)";
     $stmt = $conn->prepare($sql);
     $stmt->execute(['user_id'=>$user_id]);
     // delete comment from the database
