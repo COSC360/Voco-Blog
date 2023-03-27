@@ -1,4 +1,7 @@
-<?php
+<?
+error_reporting(E_ALL);
+in_set('display_errors', 1);
+
 session_start();
 
 $username = null;
