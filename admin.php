@@ -1,3 +1,28 @@
+<?php
+session_start();
+
+$username = null;
+$loggedIn = null;
+$isAdmin = null;
+
+if (isset($_SESSION["username"])) {
+    $username = $_SESSION["username"];
+    $user_id = $_SESSION['active_user_id'];
+}
+
+if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
+    $loggedIn = true;
+    $isAdmin = $_SESSION["isAdmin"];
+}else {
+    header("Location: register.html");
+    exit();
+}
+if(!$isAdmin){
+    header('Location: index.php');
+}
+
+?>
+
 <!doctype html>
 <html class="no-js" lang="">
 
