@@ -39,7 +39,7 @@ if (isset($_GET['user_id'])) {
     $stmt = $conn->prepare($sql);
     $stmt->execute(['user_id' => $user_id]);
 
-    if ($_SESSION['isAdmin']) {
+    if ($_SESSION['isAdmin'] && $user_id != $_SESSION['active_user_id']) {
         header("Location: ../admin.php");
     } else {
         unset($_SESSION['active_user_id']);
