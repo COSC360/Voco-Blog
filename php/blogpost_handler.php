@@ -42,3 +42,11 @@ function get_posts($conn, $search_phrase, $order, $category){
     // Do something?
     return $blogs;
 }
+
+function get_user_posts($conn, $user_id){
+    $sql = "SELECT * FROM Blogs WHERE user_id = :user_id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(['user_id' => $user_id]);
+    $blogs = $stmt->fetchAll();
+    return $blogs;
+}

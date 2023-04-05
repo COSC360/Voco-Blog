@@ -3,20 +3,12 @@
 <?php
 include('php/db_connection.php');
 include('php/like_handler.php');
+include('php/blogpost_handler.php');
+include('php/user_handler.php');
 $conn = connect();
 
-//$likedPosts = get_liked_posts($conn,$user_id);
 
-// Get Blog Posts
-$sql = "SELECT * FROM Blogs WHERE user_id = :user_id";
-$stmt = $conn->prepare($sql);
-$stmt->execute(['user_id' => $user_id]);
-$blogs = $stmt->fetchAll();
-// Get user info
-$sql = "SELECT * FROM Users WHERE user_id = :user_id";
-$stmt = $conn->prepare($sql);
-$stmt->execute(['user_id' => $user_id]);
-$user = $stmt->fetch();
+
 ?>
 <head>
     <meta charset="utf-8">
@@ -44,6 +36,7 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
     <div class="card">
         <h2>Your Posts</h2>
         <?php
+        $blogs = get_user_posts($conn, $user_id);
         foreach ($blogs as $blog){
             echo "<div class='post-entry'><div class='post-preview'>";
             echo "<h3 style='float:left;'>".$blog['blog_title']."</h3><h3 style='float:right;'>Likes: ".$blog['like_count']."</h3>";
@@ -58,6 +51,9 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
     </div>
     <div class="card" id="your-profile">
         <h2>Your Profile</h2>
+        <?php
+            $user = get_user($conn,$user_id);
+        ?>
         <div class="profile-contents">
             <img class="profile-pic" src="">
             <p>First Name: <?php echo $user['first_name']?> Last Name: <?php echo $user['last_name']?></p>
@@ -110,7 +106,6 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
 <footer>
 
 </footer>
-<script src="js/main.js"></script>
 </body>
 
 </html>

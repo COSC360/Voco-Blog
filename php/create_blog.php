@@ -61,9 +61,4 @@
 
     //Redirect
     header("Location: ../index.php");
-
-
-
-
-
 ?>
