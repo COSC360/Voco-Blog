@@ -61,7 +61,7 @@
         foreach($result as $entry) {
             $row = "<tr>";
             foreach($entry as $key=>$value) {
-                //Result set weirdness makes have to do this check
+                // Result set weirdness makes have to do this check
                 if(is_int($key)) {
                 $row .= "<td>".$value."</td>";
                 }

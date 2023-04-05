@@ -35,19 +35,12 @@
 </head>
 
 <body>
-  <header>
-    <nav class="navbar">
-
-      <div class="headbox">
-        <!--TODO: Include Logo Image-->
-        <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
-      </div>
-
-      <div class="headbox">
-        <a href="index.php">Back</a>
-      </div>
-    </nav>
-  </header>
+  <?php
+  include('php/header.php');
+  if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
+      header('Location: index.php');
+  }
+  ?>
   <div class="singleColumn">
         <form action="php/newuser.php" method="POST" class="user-form" id="newuser-form">
               <div>
@@ -80,7 +73,6 @@
   <footer>
 
   </footer>
-  <script src="js/main.js"></script>
 </body>
 
 </html>

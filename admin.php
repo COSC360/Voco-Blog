@@ -36,7 +36,7 @@ if(!$isAdmin){
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/admin.css">
-  <script type="text/javascript" src="js/admin.js"></script>
+  <script type="text/javascript" src="js/table_handler.js"></script>
 
 
 </head>
@@ -70,13 +70,13 @@ if(!$isAdmin){
 
   <script>
     document.getElementById("manageuser").addEventListener("click", function () {
-        userTableRequest("user");
+        userTableRequest("php/adminmanager.php","user");
     })
     document.getElementById("manageblogpost").addEventListener("click", function() {
-        userTableRequest("blog");
+        userTableRequest("php/adminmanager.php","blog");
     });
     document.getElementById("manageadmin").addEventListener("click", function() {
-        userTableRequest("admin")
+        userTableRequest("php/adminmanager.php","admin")
     });
 
   </script>

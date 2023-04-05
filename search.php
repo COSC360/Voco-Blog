@@ -20,22 +20,6 @@ $sql = "SELECT * FROM Category";
 $categories = $conn->query($sql);
 $conn = null;
 
-session_start();
-
-$username = null;
-$loggedIn = null;
-$isAdmin = null;
-
-if (isset($_SESSION["username"])) {
-    $username = $_SESSION["username"];
-}
-
-if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
-    $loggedIn = true;
-    $isAdmin = $_SESSION["isAdmin"];
-}
-
-
 ?>
 <head>
     <meta charset="utf-8">
@@ -45,36 +29,9 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-<header>
-    <nav class="navbar">
-        <div class="headbox">
-            <a href="index.php">Home</a>
-        </div>
-        <div class="headbox">
-            <form action="search.php" method="GET" id="search">
-                <label>
-                    <input id="search_query" name="search" type="text" placeholder="Search..">
-                </label>
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-
-        <div class="headbox">
-            <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
-        </div>
-
-        <?php
-        if ($loggedIn && $isAdmin) {
-            echo "<div class=\"headbox\"><a href=\"admin.php\">Admin</a><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
-        }elseif ($loggedIn){
-            echo "<div class=\"headbox\"><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
-        } else {
-            echo "<div class=\"headbox\"><a href=\"login.php\">Login</a><a href=\"register.html\">Register</a></div>";
-        }
-        ?>
-
-    </nav>
-</header>
+<?php
+include('php/header.php');
+?>
 <div class="column">
     <div id="left">
         <h2>Showing results for: "<?php echo $search_query ?>"</h2>

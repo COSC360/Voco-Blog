@@ -93,6 +93,7 @@ h1,h2,h3,p,a,button,legend,label {
     justify-content: space-around;
 }
 
+
 /*TODO: Generalize spacing around flex elememts, force attempt to adding spacing on <a> links in login/register*/
 .headbox a {
     margin: 0.5em;
@@ -117,6 +118,11 @@ h1,h2,h3,p,a,button,legend,label {
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+#topOptions {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
 }
 #createPost {
     height: 5em;

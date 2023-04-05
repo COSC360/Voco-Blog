@@ -26,3 +26,14 @@ function remove_like(){
 
 
 }
+
+if (isset($_GET['action']) && $_GET['action'] == 'get') {
+    get_liked_posts();
+}
+
+if (isset($_GET['action']) && $_GET['action'] == 'like') {
+    add_like();
+}
+if (isset($_GET['action']) && $_GET['action'] == 'remove') {
+    add_like();
+}

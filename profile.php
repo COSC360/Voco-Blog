@@ -4,26 +4,8 @@
 include('php/db_connection.php');
 include('php/like_handler.php');
 $conn = connect();
-session_start();
 
-$username = null;
-$loggedIn = null;
-$isAdmin = null;
-
-if (isset($_SESSION["username"])) {
-    $username = $_SESSION["username"];
-    $user_id = $_SESSION['active_user_id'];
-}
-
-if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
-    $loggedIn = true;
-    $isAdmin = $_SESSION["isAdmin"];
-}else {
-    header("Location: register.html");
-    exit();
-}
-
-$likedPosts = get_liked_posts($conn,$user_id);
+//$likedPosts = get_liked_posts($conn,$user_id);
 
 // Get Blog Posts
 $sql = "SELECT * FROM Blogs WHERE user_id = :user_id";
@@ -45,37 +27,13 @@ $user = $stmt->fetch();
     <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
-<header>
-    <nav class="navbar">
-        <div class="headbox">
-            <a href="index.php">Home</a>
-        </div>
-        <div class="headbox">
-            <form action="search.php" method="GET" id="search">
-                <label>
-                    <input id="search_query" name="search" type="text" placeholder="Search..">
-                </label>
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-
-        <div class="headbox">
-            <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
-        </div>
-
-        <?php
-        if ($loggedIn && $isAdmin) {
-            echo "<div class=\"headbox\"><a href=\"admin.php\">Admin</a><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
-        }elseif ($loggedIn){
-            echo "<div class=\"headbox\"><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
-        } else {
-            echo "<div class=\"headbox\"><a href=\"login.php\">Login</a><a href=\"register.html\">Register</a></div>";
-        }
-        ?>
-
-    </nav>
-</header>
-
+<?php
+include('php/header.php');
+if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
+    header("Location: register.html");
+    exit();
+}
+?>
 <!--TODO: Update 3 column layout to be prettier:
  Col 1: blog posts - view list of posted blogs, ability to view/edit/delete
  Col 2: Account Information - View account info, ability to edit account profile / delete account
@@ -113,7 +71,19 @@ $user = $stmt->fetch();
         </div>
 
     </div>
-    <div class="card">
+    <div class="card" id="sideOptions">
+
+        <a id="likedposts">Liked Posts</a>
+        <a id="usercomments">User Comments</a>
+        <script>
+            document.getElementById("likedposts").addEventListener("click", function () {
+                userTableRequest("php/profile_handler.php","likedposts");
+            })
+            document.getElementById("usercomments").addEventListener("click", function() {
+                userTableRequest("php/profile_handler.php","usercomments");
+            });
+
+        </script>
         <h2>Liked Posts</h2>
         <table>
             <thead>
@@ -135,24 +105,6 @@ $user = $stmt->fetch();
             </tbody>
         </table>
 
-        <div class="post-entry">
-            <div class="post-preview">
-                <h3 style="float:left;">A Blog Title</h3>
-                <h3 style="float:right;">John Doe</h3>
-            </div>
-            <div class="entry-buttons">
-                <button>Unsave</button>
-            </div>
-        </div>
-        <div class="post-entry">
-            <div class="post-preview">
-                <h3 style="float:left;">A Blog Title</h3>
-                <h3 style="float:right;">John Doe</h3>
-            </div>
-            <div class="entry-buttons">
-                <button>Unsave</button>
-            </div>
-        </div>
     </div>
 </div>
 <footer>

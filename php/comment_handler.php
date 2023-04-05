@@ -68,3 +68,4 @@ function delete_comment($conn, $comment_id, $active_user_id){
         return "Success";
     }
 }
+
