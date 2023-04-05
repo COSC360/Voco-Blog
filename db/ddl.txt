@@ -6,6 +6,7 @@ role_name VARCHAR(50)
 CREATE TABLE Users (
 user_id INT AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(50),
+role_id INT,
 profile_picture BLOB,
 profile_picture_type VARCHAR(10),
 first_name VARCHAR(50),
