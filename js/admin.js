@@ -9,6 +9,4 @@ function userTableRequest(tablename) {
     xhttp.open("GET","php/adminmanager.php"+"?tablename="+tablename,true);
     xhttp.send();
 
-
-
 }

@@ -3,7 +3,6 @@
 <?php
 include('php/db_connection.php');
 $conn = connect();
-// TODO: Update so that filters work - maybe extract to different file?
 
 $search_query = $_GET['search'];
 // Get Blog Posts

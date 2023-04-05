@@ -56,7 +56,7 @@
 
         if($stmt->execute()) {
             echo "User Successfully Added";
-            header("Location: ../login.html");
+            header("Location: ../login.php");
             exit();
         } else {
             echo "Failed to user";

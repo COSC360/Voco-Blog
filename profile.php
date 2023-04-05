@@ -2,6 +2,7 @@
 <html class="no-js" lang="">
 <?php
 include('php/db_connection.php');
+include('php/like_handler.php');
 $conn = connect();
 session_start();
 
@@ -22,8 +23,8 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
     exit();
 }
 
+$likedPosts = get_liked_posts($conn,$user_id);
 
-// TODO: Update so that filters work - maybe extract to different file?
 // Get Blog Posts
 $sql = "SELECT * FROM Blogs WHERE user_id = :user_id";
 $stmt = $conn->prepare($sql);
@@ -34,7 +35,6 @@ $sql = "SELECT * FROM Users WHERE user_id = :user_id";
 $stmt = $conn->prepare($sql);
 $stmt->execute(['user_id' => $user_id]);
 $user = $stmt->fetch();
-// TODO: Get Saved Blogs - Requires DB refactor
 ?>
 <head>
     <meta charset="utf-8">
@@ -114,7 +114,27 @@ $user = $stmt->fetch();
 
     </div>
     <div class="card">
-        <h2>Saved Posts</h2>
+        <h2>Liked Posts</h2>
+        <table>
+            <thead>
+            <tr>
+                <td>Post</td>
+                <td>Author</td>
+                <td colspan="2"></td>
+            </tr>
+            </thead>
+            <tbody>
+                <?php
+                    foreach ($likedPosts as $post){
+                        echo "<tr><td>".$post['blog_title']."</td><td>".$post['username']."</td>";
+                        echo "<td><a href='post.php?blog_id=".$post['blog_id']."'>View</a></td>";
+                        // TODO: Functionality not complete. Probably needs to be done with AJAX.
+                        echo "<td href=''><a>Delete</a></td>";
+                    }
+                ?>
+            </tbody>
+        </table>
+
         <div class="post-entry">
             <div class="post-preview">
                 <h3 style="float:left;">A Blog Title</h3>

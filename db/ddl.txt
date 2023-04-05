@@ -1,11 +1,12 @@
 CREATE TABLE Roles (
 role_id INT AUTO_INCREMENT PRIMARY KEY,
 role_name VARCHAR(50)
-    );
+);
 
 CREATE TABLE Users (
 user_id INT AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(50),
+profile_picture BLOB,
 role_id INT,
 first_name VARCHAR(50),
 last_name VARCHAR(50),
@@ -24,23 +25,26 @@ blog_img BLOB,
 blog_contents TEXT,
 like_count INT,
 FOREIGN KEY (user_id) REFERENCES Users(user_id)
-    );
+);
+
 
 CREATE TABLE Comments (
 comment_id INT AUTO_INCREMENT PRIMARY KEY,
+parent_id INT,
 user_id INT,
 blog_id INT,
 comment_contents TEXT,
 comment_createdAt DATETIME,
 like_count INT,
+FOREIGN KEY (parent_id) REFERENCES Comments(comment_id),
 FOREIGN KEY (user_id) REFERENCES Users(user_id),
 FOREIGN KEY (blog_id) REFERENCES Blogs(blog_id)
-    );
+);
 
 CREATE TABLE Category (
 category_id INT AUTO_INCREMENT PRIMARY KEY,
 category_name VARCHAR(50)
-    );
+);
 
 CREATE TABLE blogCategory (
 category_id INT,
@@ -48,4 +52,12 @@ blog_id INT,
 PRIMARY KEY (category_id, blog_id),
 FOREIGN KEY (category_id) REFERENCES Category(category_id),
 FOREIGN KEY (blog_id) REFERENCES Blogs(blog_id)
-    );
+);
+
+CREATE TABLE blogLikes (
+user_id INT,
+blog_id INT,
+PRIMARY KEY (user_id,blog_id),
+FOREIGN KEY (user_id) REFERENCES Users(user_id),
+FOREIGN KEY (blog_id) REFERENCES Blogs(blog_id)
+);
