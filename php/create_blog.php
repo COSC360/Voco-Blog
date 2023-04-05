@@ -22,26 +22,32 @@
         //TODO:  For now only sends one category_id val, allow more then one
         $catagories = $_POST["categories"];
 
-        //TODO: Have user select their own image for a blog post
+        //Retrieve profile img contents
         $cover_img = $_FILES["cover_img"]["tmp_name"];
-
-        //TODO: Remove in final milestone, so that img uploads are user choices
-        $cover_img = "img/eddyed.jpg";
-
+        //Retrieve image path information
+        $img_path = $_FILES['cover_img']['name'];
+        $imageFileType = strtolower(pathinfo($img_path,PATHINFO_EXTENSION));
+        //Get image blob
+        $image_blob = file_get_contents($cover_img);
         $like_count = 0;
     } else {
         die();
     }
 
-    //TODO: Store images as blobs
-    $image_blob = file_get_contents($cover_img);
+    // Validate img contents
+     if($_FILES["userImg"]["size"] < 100000 && ($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "gif") ) {
+        $uploadOk = 1;
+        echo "VALID IMAGE UPLOAD";
+     } else {
+        die("Error: Image is too large or image is invalid type");
+     }
 
     // // INSERT into Blogs
-    $sql = "INSERT INTO Blogs (user_id,blog_title,blog_createdAt,blog_modifiedAt,blog_img,blog_contents,like_count) VALUES (?,?,NOW(),NOW(),?,?,?)";
+    $sql = "INSERT INTO Blogs (user_id,blog_title,blog_createdAt,blog_modifiedAt,blog_img,blog_img_type,blog_contents,like_count) VALUES (?,?,NOW(),NOW(),?,?,?)";
 
     $stmt = $pdo->prepare($sql);
 
-    $result = $stmt->execute([$active_user_id,$blog_title,$cover_img,$blog_contents,$like_count]);
+    $result = $stmt->execute([$active_user_id,$blog_title,$cover_img,$imageFileType,$blog_contents,$like_count]);
 
     // //Get new blog ID
     $new_blog_id = $pdo->lastInsertId();
