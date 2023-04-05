@@ -25,7 +25,7 @@
         //Retrieve profile img contents
         $cover_img = $_FILES["cover_img"]["tmp_name"];
         //Retrieve image path information
-        $img_path = $_FILES['cover_img']['name'];
+        $img_path = $_FILES["cover_img"]['name'];
         $imageFileType = strtolower(pathinfo($img_path,PATHINFO_EXTENSION));
         //Get image blob
         $image_blob = file_get_contents($cover_img);
@@ -35,8 +35,6 @@
     }
 
     // Validate img contents
-    echo $imageFileType;
-    echo $_FILES["cover_img"]["size"];
      if($_FILES["cover_img"]["size"] < 8000000 && ($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "gif") ) {
         $uploadOk = 1;
         echo "VALID IMAGE UPLOAD";

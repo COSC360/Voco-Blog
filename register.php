@@ -42,7 +42,7 @@
   }
   ?>
   <div class="singleColumn">
-        <form action="php/newuser.php" method="POST" class="user-form" id="newuser-form">
+        <form action="php/newuser.php" method="POST" class="user-form" id="newuser-form" enctype="multipart/form-data">
               <div>
                   <label for="firstname">First Name</label>
                   <input type="text" name="firstname" id="firstname" placeholder="John">
