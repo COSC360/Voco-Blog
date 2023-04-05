@@ -23,7 +23,7 @@
         $catagories = $_POST["categories"];
 
         //TODO: Have user select their own image for a blog post
-        //$cover_img = $_FILES["cover_img"]["tmp_name"];
+        $cover_img = $_FILES["cover_img"]["tmp_name"];
 
         //TODO: Remove in final milestone, so that img uploads are user choices
         $cover_img = "img/eddyed.jpg";
@@ -34,7 +34,7 @@
     }
 
     //TODO: Store images as blobs
-    //$image_blob = file_get_contents($cover_img);
+    $image_blob = file_get_contents($cover_img);
 
     // // INSERT into Blogs
     $sql = "INSERT INTO Blogs (user_id,blog_title,blog_createdAt,blog_modifiedAt,blog_img,blog_contents,like_count) VALUES (?,?,NOW(),NOW(),?,?,?)";
