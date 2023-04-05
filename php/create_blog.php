@@ -35,7 +35,9 @@
     }
 
     // Validate img contents
-     if($_FILES["userImg"]["size"] < 100000 && ($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "gif") ) {
+    echo $imageFileType;
+    echo $_FILES["cover_img"]["size"];
+     if($_FILES["cover_img"]["size"] < 8000000 && ($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "gif") ) {
         $uploadOk = 1;
         echo "VALID IMAGE UPLOAD";
      } else {
@@ -43,11 +45,11 @@
      }
 
     // // INSERT into Blogs
-    $sql = "INSERT INTO Blogs (user_id,blog_title,blog_createdAt,blog_modifiedAt,blog_img,blog_img_type,blog_contents,like_count) VALUES (?,?,NOW(),NOW(),?,?,?)";
+    $sql = "INSERT INTO Blogs (user_id,blog_title,blog_createdAt,blog_modifiedAt,blog_img,blog_img_type,blog_contents,like_count) VALUES (?,?,NOW(),NOW(),?,?,?,?)";
 
     $stmt = $pdo->prepare($sql);
 
-    $result = $stmt->execute([$active_user_id,$blog_title,$cover_img,$imageFileType,$blog_contents,$like_count]);
+    $result = $stmt->execute([$active_user_id,$blog_title,$image_blob,$imageFileType,$blog_contents,$like_count]);
 
     // //Get new blog ID
     $new_blog_id = $pdo->lastInsertId();

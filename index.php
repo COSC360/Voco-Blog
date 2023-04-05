@@ -81,7 +81,7 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
                 if(isset($row["blog_img"]) && isset($row["blog_img_type"])){
                     $imagedata = $row["blog_img"];
                     $contentType = $row["blog_img_type"];
-                    echo "<img src=\"data:image/".$contentType.";base64,".base64_encode($imagedata)."\"/>";
+                    echo "<figure><img src=\"data:image/".$contentType.";base64,".base64_encode($imagedata)."\" height=\"100%\" width=\"100%\" /></figure>";
                 }
                 // TODO: Handle empty blog images ???
                 echo "<div class='blog-title'><h3><a href='post.php?blog_id=" . $row['blog_id'] . "'>".$row['blog_title']." - By ".$row['username']."</a></h3></div>";
