@@ -11,7 +11,7 @@ profile_picture_type VARCHAR(10),
 first_name VARCHAR(50),
 last_name VARCHAR(50),
 email VARCHAR(50),
-password VARCHAR(50),
+password VARCHAR(255),
 FOREIGN KEY (role_id) REFERENCES Roles(role_id)
 );
 
@@ -62,3 +62,50 @@ PRIMARY KEY (user_id,blog_id),
 FOREIGN KEY (user_id) REFERENCES Users(user_id),
 FOREIGN KEY (blog_id) REFERENCES Blogs(blog_id)
 );
+
+-- Create roles table
+INSERT INTO Roles (role_id, role_name)
+VALUES (1, 'user'), (2, 'admin');
+
+-- Create users table
+INSERT INTO Users (user_id, username, profile_picture, role_id, first_name, last_name, email, password)
+VALUES
+(1, 'johndoe', NULL, 1, 'John', 'Doe', 'johndoe@example.com', MD5('password123')),
+(2, 'janesmith', NULL, 1, 'Jane', 'Smith', 'janesmith@example.com', MD5('password123')),
+(3, 'eddyed', NULL, 2, 'Eddy', 'Ed', 'eddyed@example.com', MD5('password123')),
+(4, 'loggylog', NULL, 2, 'Loggy', 'Log', 'loggylog@example.com', MD5('password123'));
+
+-- Create categories table
+INSERT INTO Category (category_id, category_name)
+VALUES
+(1, 'Skiing'),
+(2, 'Snowboarding'),
+(3, 'Climbing'),
+(4, 'Hiking');
+
+-- Create blogs table
+INSERT INTO Blogs (blog_id, user_id, blog_title, blog_createdAt, blog_modifiedAt, blog_img, blog_contents, like_count)
+VALUES
+(1, 1, 'My First Ski Trip', NOW(), NOW(), NULL, 'I went on my first ski trip and it was amazing!', 10),
+(2, 2, 'Climbing Adventure', NOW(), NOW(), NULL, 'I went on a climbing adventure and conquered my fears!', 5);
+
+-- Create blogCategory table
+INSERT INTO blogCategory (category_id, blog_id)
+VALUES
+(1, 1),
+(2, 1),
+(3, 2);
+
+-- Create comments table
+INSERT INTO Comments (comment_id, parent_id, user_id, blog_id, comment_contents, comment_createdAt, like_count)
+VALUES
+(1, NULL, 1, 1, 'Glad to hear you enjoyed it!', NOW(), 2),
+(2, NULL, 2, 2, 'Congratulations on conquering your fears!', NOW(), 1);
+
+-- Create blogLikes table
+INSERT INTO blogLikes (user_id, blog_id)
+VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1);
