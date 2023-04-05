@@ -35,9 +35,12 @@ include('php/header.php') ?>
             <?php
             while ($row = $blogs->fetch()) {
                 echo "<div class='entry'>";
-                if(isset($row['blog_img'])){
-                    echo "<figure><img src=".$row['blog_img']." height=\"100%\" width=\"100%\"></figure>";
+                if(isset($row["blog_img"]) && isset($row["blog_img_type"])){
+                    $imagedata = $row["blog_img"];
+                    $contentType = $row["blog_img_type"];
+                    echo "<figure><img src=\"data:image/".$contentType.";base64,".base64_encode($imagedata)."\" height=\"100%\" width=\"100%\" /></figure>";
                 }
+                // TODO: Handle empty blog images ???
                 echo "<div class='blog-title'><h3><a href='post.php?blog_id=" . $row['blog_id'] . "'>".$row['blog_title']." - By ".$row['username']."</a></h3></div>";
                 echo "<div class='blog-preview'><p>". substr($row['blog_contents'], 0, 100)."</p></div>";
                 echo "</div>";

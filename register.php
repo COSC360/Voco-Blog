@@ -60,6 +60,10 @@
                   <input required type="email" name="email" id="email" placeholder="example@webmail.com">
               </div>
               <div>
+                <label for="profile_picture">Profile Picture</label>
+                <input type="file" name="profile_picture" id="profile_picture">
+              </div>
+              <div>
                   <label for="password">Password</label>
                   <input required type="password" name="password" id="password" placeholder="Enter Your Password">
               </div>
