@@ -1,54 +1,11 @@
 <!doctype html>
 <html class="no-js" lang="">
 <?php
-
-    include('php/db_connection.php');
-    $conn = connect();
     if(!isset($_GET['blog_id'])){
         header('Location: index.php');
         exit;
     }
     $blog_id = $_GET['blog_id'];
-
-    // If a new comment is submitted:
-    if(isset($_POST['new_comment'])){
-        $comment_contents = $_POST['comment_contents'];
-        $sql = "INSERT INTO Comments (user_id, blog_id, comment_contents, comment_createdAt, like_count)
-                VALUES (:user_id, :blog_id, :comment_contents, NOW(), 0)";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['user_id' => $user_id, 'blog_id' => $blog_id, 'comment_contents' => $comment_contents]);
-        header("Location: post.php?blog_id=".$blog_id);
-        exit();
-    }
-
-    // Get blog posts
-    $sql = "SELECT blog.*, user.username, category.category_name
-            FROM Blogs AS blog
-            INNER JOIN Users AS user ON blog.user_id = user.user_id
-            JOIN blogCategory AS bc ON blog.blog_id = bc.blog_id
-            JOIN Category category ON bc.category_id = category.category_id
-            WHERE blog.blog_id = :blog_id";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(['blog_id' => $blog_id]);
-    $blog = $stmt->fetch();
-    if (!$blog) {
-        header('Location: index.php');
-        exit;
-    }
-    // Get comments
-    $sql = "SELECT comment.*, user.username
-            FROM Comments comment
-            INNER JOIN Users user ON comment.user_id = user.user_id
-            WHERE comment.blog_id = :blog_id";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(['blog_id' => $blog_id]);
-    $comments = $stmt -> fetchAll();
-
-
-    $conn=null;
-
-
-
 ?>
 <head>
     <meta charset="utf-8">
@@ -59,7 +16,40 @@
 </head>
 <body>
 <?php
-include('php/header.php')
+include('php/header.php');
+ // If a new comment is submitted:
+ if(isset($_POST['new_comment'])){
+    $comment_contents = $_POST['comment_contents'];
+    $sql = "INSERT INTO Comments (user_id, blog_id, comment_contents, comment_createdAt, like_count)
+            VALUES (:user_id, :blog_id, :comment_contents, NOW(), 0)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(['user_id' => $user_id, 'blog_id' => $blog_id, 'comment_contents' => $comment_contents]);
+    header("Location: post.php?blog_id=".$blog_id);
+    exit();
+}
+
+// Get blog posts
+$sql = "SELECT blog.*, user.username, category.category_name
+        FROM Blogs AS blog
+        INNER JOIN Users AS user ON blog.user_id = user.user_id
+        JOIN blogCategory AS bc ON blog.blog_id = bc.blog_id
+        JOIN Category category ON bc.category_id = category.category_id
+        WHERE blog.blog_id = :blog_id";
+$stmt = $conn->prepare($sql);
+$stmt->execute(['blog_id' => $blog_id]);
+$blog = $stmt->fetch();
+if (!$blog) {
+    header('Location: index.php');
+    exit;
+}
+// Get comments
+$sql = "SELECT comment.*, user.username
+        FROM Comments comment
+        INNER JOIN Users user ON comment.user_id = user.user_id
+        WHERE comment.blog_id = :blog_id";
+$stmt = $conn->prepare($sql);
+$stmt->execute(['blog_id' => $blog_id]);
+$comments = $stmt -> fetchAll();
 ?>
 
 <form action="" method="post">

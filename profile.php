@@ -1,14 +1,8 @@
 <!doctype html>
 <html class="no-js" lang="">
 <?php
-include('php/db_connection.php');
 include('php/like_handler.php');
 include('php/blogpost_handler.php');
-include('php/user_handler.php');
-$conn = connect();
-
-
-
 ?>
 <head>
     <meta charset="utf-8">
@@ -18,6 +12,7 @@ $conn = connect();
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/profile.css">
     <script type="text/javascript" src="js/table_handler.js"></script>
+
 
 </head>
 <body>
@@ -57,8 +52,10 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
             $user = get_user($conn,$user_id);
         ?>
         <div class="profile-contents">
-            <img class="profile-pic" src="">
-            <p>First Name: <?php echo $user['first_name']?> Last Name: <?php echo $user['last_name']?></p>
+
+         <?php echo "<figure><img class=\"profile-pic\" src=\"data:image/".$user["profile_picture_type"].";base64,".base64_encode($user["profile_picture"])."\" height=\"100%\" width=\"100%\" /></figure>"; ?>;
+
+            <p>First Name: <?php echo $user['first_name']?> <br> Last Name: <?php echo $user['last_name']?></p>
             <p>Email: <?php echo $user['email'] ?></p>
 
         </div>
@@ -69,22 +66,24 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
         </div>
 
     </div>
-    <div class="card" id="sidenav">
-
-        <a id="likedposts">Liked Posts</a>
-        <a id="usercomments">User Comments</a>
-
+    <div class="card">
+        <div id="sidenav">
+            <a id="likedposts">Liked Posts</a>
+            <a id="usercomments">User Comments</a>
+        </div>
+    <div id="table"></div>
         <script>
             document.getElementById("likedposts").addEventListener("click", function () {
+
                 userTableRequest("php/profile_handler.php","likedposts");
+
             })
             document.getElementById("usercomments").addEventListener("click", function() {
+
                 userTableRequest("php/profile_handler.php","usercomments");
             });
 
         </script>
-        <div id="table">
-        </div>
     </div>
 </div>
 <footer>

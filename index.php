@@ -1,8 +1,17 @@
 <!doctype html>
 <html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>VOCO Blog - Home</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="js/clickblog.js"></script>
+</head>
+<body>
 <?php
-include('php/db_connection.php');
-$conn = connect();
+include('php/header.php');
 // TODO: Update so that filters work - maybe extract to different file?
 // Get Blog Posts
 $sql = "SELECT blog.*, user.username
@@ -12,20 +21,7 @@ $blogs = $conn->query($sql);
 // Get all categories
 $sql = "SELECT * FROM Category";
 $categories = $conn->query($sql);
-$conn = null;
-
-
 ?>
-<head>
-    <meta charset="utf-8">
-    <title>VOCO Blog - Home</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
-<?php
-include('php/header.php') ?>
 <div class="column">
     <div id="left">
         <h2>Recent Posts</h2>
@@ -40,7 +36,9 @@ include('php/header.php') ?>
                     $contentType = $row["blog_img_type"];
                     echo "<figure><img src=\"data:image/".$contentType.";base64,".base64_encode($imagedata)."\" height=\"100%\" width=\"100%\" /></figure>";
                 }
-                echo "<div class='blog-title'><h3><a href='post.php?blog_id=" . $row['blog_id'] . "'>".$row['blog_title']." - By ".$row['username']."</a></h3></div>";
+                echo "<div class='blog-title'><h3><a class='blog-link' href='post.php?blog_id=" . $row['blog_id'] . "'>".$row['blog_title']."</a></h3></div>";
+                echo "<div class='blog-author'><h3> By ".$row['username']."</h3></div>";
+
                 echo "<div class='blog-preview'><p>". substr($row['blog_contents'], 0, 100)."</p></div>";
                 echo "</div>";
             }

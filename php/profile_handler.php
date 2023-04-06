@@ -4,6 +4,8 @@ include("validateRequests.php");
 include("comment_handler.php");
 include("like_handler.php");
 
+session_start();
+
 $conn = connect();
 
 if(validateGetRequest($_GET,$_SERVER)){
@@ -27,19 +29,13 @@ if($tablename == "likedposts") {
     $result = get_user_comments($conn,$user_id);
     $id = "user_id";
     $action = "comment_handler.php?action=delete";
-
-//    $sql = "SELECT * FROM Users";
-//    // Set up for delete action
-//    $id = "user_id";
-//    $action = "comment_handler.php?action=get";
 } else {
     echo("Error: Invalid request parameter");
     die();
 }
 
-if($result->rowCount() > 0) {
+if(count($result) > 0 ) {
 
-    $result = $result->fetchAll();
     $table = "<table>";
 
     //Create table header
@@ -76,3 +72,5 @@ if($result->rowCount() > 0) {
 } else {
     echo "Error: Empty Table";
 }
+
+?>

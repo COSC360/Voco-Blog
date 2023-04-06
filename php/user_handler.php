@@ -7,3 +7,4 @@ function get_user($conn, $user_id){
     $user = $stmt->fetch();
     return $user;
 }
+?>

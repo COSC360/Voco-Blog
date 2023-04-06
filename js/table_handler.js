@@ -8,5 +8,4 @@ function userTableRequest(pagename,tablename) {
     };
     xhttp.open("GET",pagename+"?tablename="+tablename,true);
     xhttp.send();
-
 }
