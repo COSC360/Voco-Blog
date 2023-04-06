@@ -42,5 +42,16 @@
 .entry-buttons button {
     float: right;
 }
+#sidenav {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+}
 
+#sidenav a {
+    margin: 2em;
+}
 
+#sidenav a:hover {
+    color: blue;
+}

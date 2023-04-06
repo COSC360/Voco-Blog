@@ -2,28 +2,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-session_start();
-
-$username = null;
-$loggedIn = null;
-$isAdmin = null;
-
-if (isset($_SESSION["username"])) {
-    $username = $_SESSION["username"];
-    $user_id = $_SESSION['active_user_id'];
-}
-
-if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
-    $loggedIn = true;
-    $isAdmin = $_SESSION["isAdmin"];
-}else {
-    header("Location: register.html");
-    exit();
-}
-if(!$isAdmin){
-    header('Location: index.php');
-}
-
 ?>
 
 <!doctype html>
@@ -42,18 +20,12 @@ if(!$isAdmin){
 </head>
 
 <body>
-<header>
-  <nav class="navbar">
-    <div class="headbox">
-      <!--TODO: Include Logo Image-->
-      <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
-    </div>
-
-    <div class="headbox">
-      <a href="index.php">Back</a>
-    </div>
-  </nav>
-</header>
+<?php
+include('php/header.php');
+if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) || !$isAdmin){
+    header("Location: index.php");
+}
+?>
 
 <!--TODO: Update 3 column layout to be prettier:
  Col 1: blog posts - view list of posted blogs, ability to view/edit/delete
@@ -95,7 +67,6 @@ if(!$isAdmin){
 <footer>
 
 </footer>
-<script src="js/main.js"></script>
 </body>
 
 </html>

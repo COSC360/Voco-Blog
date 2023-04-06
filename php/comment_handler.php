@@ -1,5 +1,5 @@
 <?php
-function get_comments($conn, $blog_id){
+function get_blog_comments($conn, $blog_id){
 
     $sql = "SELECT comment.*, user.username
             FROM Comments comment
@@ -7,6 +7,17 @@ function get_comments($conn, $blog_id){
             WHERE comment.blog_id = :blog_id";
     $stmt = $conn->prepare($sql);
     $stmt->execute(['blog_id' => $blog_id]);
+    $comments = $stmt -> fetchAll();
+    return $comments;
+}
+
+function get_user_comments($conn, $user_id){
+    $sql = "SELECT comment.*, user.username
+            FROM Comments comment
+            INNER JOIN Users user ON comment.user_id = user.user_id
+            WHERE comment.user_id = :user_id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(['user_id' => $user_id]);
     $comments = $stmt -> fetchAll();
     return $comments;
 }

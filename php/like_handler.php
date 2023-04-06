@@ -14,18 +14,35 @@ function get_liked_posts($conn,$user_id){
     return $liked_posts;
 
 }
-
 function add_like($conn, $user_id, $post_id){
     // Insert like into join table
-    $sql = "INSERT INTO blogLikes";
+    $sql = "INSERT INTO blogLikes (user_id,blog_id) VALUES(:user_id, :post_id)";
+    $stmt = $conn->prepare($sql);
+    $stmt -> execute([
+       'user_id' => $user_id,
+       'post_id' => $post_id
+    ]);
     // Update blog like value with new count
+    update_post($conn,$post_id);
+}
+function remove_like($conn,$user_id,$post_id){
+    $sql = "DELETE FROM blogLikes WHERE user_id = :user_id AND blog_id = :blog_id";
+    $stmt = $conn->prepare($sql);
+    $stmt -> execute([
+        'user_id' => $user_id,
+        'blog_id' => $post_id
+    ]);
+    update_post($conn,$post_id);
+}
+function update_post($conn,$post_id){
     $sql = "UPDATE Blogs blog SET like_count = (SELECT COUNT(blog_id) FROM blogLikes likes WHERE likes.blog_id = :post_id)";
-
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([
+        'post_id' => $post_id,
+    ]);
 }
-function remove_like(){
 
 
-}
 
 if (isset($_GET['action']) && $_GET['action'] == 'get') {
     get_liked_posts();
@@ -35,5 +52,5 @@ if (isset($_GET['action']) && $_GET['action'] == 'like') {
     add_like();
 }
 if (isset($_GET['action']) && $_GET['action'] == 'remove') {
-    add_like();
+    remove_like();
 }

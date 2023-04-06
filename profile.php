@@ -17,6 +17,8 @@ $conn = connect();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/profile.css">
+    <script type="text/javascript" src="js/table_handler.js"></script>
+
 </head>
 <body>
 <?php
@@ -67,10 +69,11 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
         </div>
 
     </div>
-    <div class="card" id="sideOptions">
+    <div class="card" id="sidenav">
 
         <a id="likedposts">Liked Posts</a>
         <a id="usercomments">User Comments</a>
+
         <script>
             document.getElementById("likedposts").addEventListener("click", function () {
                 userTableRequest("php/profile_handler.php","likedposts");
@@ -80,27 +83,8 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
             });
 
         </script>
-        <h2>Liked Posts</h2>
-        <table>
-            <thead>
-            <tr>
-                <td>Post</td>
-                <td>Author</td>
-                <td colspan="2"></td>
-            </tr>
-            </thead>
-            <tbody>
-                <?php
-                    foreach ($likedPosts as $post){
-                        echo "<tr><td>".$post['blog_title']."</td><td>".$post['username']."</td>";
-                        echo "<td><a href='post.php?blog_id=".$post['blog_id']."'>View</a></td>";
-                        // TODO: Functionality not complete. Probably needs to be done with AJAX.
-                        echo "<td href=''><a>Delete</a></td>";
-                    }
-                ?>
-            </tbody>
-        </table>
-
+        <div id="table">
+        </div>
     </div>
 </div>
 <footer>

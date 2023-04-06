@@ -37,7 +37,6 @@ user_id INT,
 blog_id INT,
 comment_contents TEXT,
 comment_createdAt DATETIME,
-like_count INT,
 FOREIGN KEY (parent_id) REFERENCES Comments(comment_id),
 FOREIGN KEY (user_id) REFERENCES Users(user_id),
 FOREIGN KEY (blog_id) REFERENCES Blogs(blog_id)
