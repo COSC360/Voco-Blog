@@ -40,7 +40,6 @@ include('php/header.php') ?>
                     $contentType = $row["blog_img_type"];
                     echo "<figure><img src=\"data:image/".$contentType.";base64,".base64_encode($imagedata)."\" height=\"100%\" width=\"100%\" /></figure>";
                 }
-                // TODO: Handle empty blog images ???
                 echo "<div class='blog-title'><h3><a href='post.php?blog_id=" . $row['blog_id'] . "'>".$row['blog_title']." - By ".$row['username']."</a></h3></div>";
                 echo "<div class='blog-preview'><p>". substr($row['blog_contents'], 0, 100)."</p></div>";
                 echo "</div>";

@@ -23,9 +23,9 @@
 
     // Get blog posts
     $sql = "SELECT blog.*, user.username, category.category_name
-            FROM Blogs blog
-            INNER JOIN Users user ON blog.user_id = user.user_id
-            JOIN blogCategory bc on blog.blog_id = bc.blog_id
+            FROM Blogs AS blog
+            INNER JOIN Users AS user ON blog.user_id = user.user_id
+            JOIN blogCategory AS bc ON blog.blog_id = bc.blog_id
             JOIN Category category ON bc.category_id = category.category_id
             WHERE blog.blog_id = :blog_id";
     $stmt = $conn->prepare($sql);
@@ -70,9 +70,13 @@ include('php/header.php')
             ?>
             <div  class="articleContainer">
                 <?php
-                if(isset($blog['blog_img'])){
-                    echo "<figure><img src=".$blog['blog_img']." height=\"50%\" width=\"50%\" alt='Blog image'></figure>";
-                }
+            if(isset($blog["blog_img"]) && isset($blog["blog_img_type"])){
+                $imagedata = $blog["blog_img"];
+                $contentType = $blog["blog_img_type"];
+                echo "<figure><img src=\"data:image/".$contentType.";base64,".base64_encode($imagedata)."\" height=\"50%\" width=\"50%\" /></figure>";
+            } else {
+                echo "No Img :(";
+            }
                 ?>
                 <p style="white-space: pre-wrap;">
                     <?php
@@ -142,7 +146,6 @@ include('php/header.php')
     </div>
 <footer>
 </footer>
-<script src="js/main.js"></script>
 </body>
 
 </html>

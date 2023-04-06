@@ -36,7 +36,6 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
   <footer>
 
   </footer>
-  <script src="js/main.js"></script>
 </body>
 
 </html>
