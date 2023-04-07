@@ -101,17 +101,12 @@ $comment_data = json_encode($data);
                 echo "No Img :(";
             }
             ?>
-            <p style="white-space: pre-wrap;">
-                <?php
-                echo $blog['blog_contents'];
-                ?>
-            </p>
                 <p style="white-space: pre-wrap;">
                     <?php
                     // Enable like functionality
                     if($loggedIn) {
                     // listener is set in <a> in js script to POST a user like
-                    echo "<div id=\"like\" style=\"position:absolute;bottom:0;\"><form id='like-form'><input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"action\" value=\"like\"><button type=\"submit\">Like</button></form>
+                    echo "<div id=\"like\" style=\"position:absolute;bottom:0;\"><form id='like-form'><input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"blog_id\" value=\"".$blog_id."\"><input type=\"hidden\" name=\"action\" value=\"like\"><button type=\"submit\">Like</button></form>
                           <p id=\"like_count\">".$blog["like_count"]."</p></div>";
                     }
                     echo "<div id=\"blog-contents\">".$blog['blog_contents']."</div>";

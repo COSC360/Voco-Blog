@@ -3,6 +3,14 @@ include("db_connection.php");
 
 $conn = connect();
 
+function get_like_count($conn,$blog_id) {
+    $sql = "SELECT like_count FROM Blogs WHERE blog_id= :blog_id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(['blog_id' => $blog_id]);
+    $like_count = $stmt -> fetch();
+
+    return $like_count;
+}
 function get_liked_posts($conn,$user_id){
     // TODO: Decide if we also want blog contents
     $sql = "SELECT blog.blog_id,blog.blog_title, user.username
@@ -52,7 +60,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'get') {
 
 if (isset($_GET['action']) && $_GET['action'] == 'like') {
 
-    add_like($conn,);
+    add_like($conn,$_POST['user_id'],$_POST['blog_id']);
+
+    echo get_like_count($conn,$blog_id);
 }
 if (isset($_GET['action']) && $_GET['action'] == 'remove') {
     remove_like();
