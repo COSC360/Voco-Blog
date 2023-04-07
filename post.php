@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/comment.css">
+    <script type="text/javascript" src="js/post.js"></script>
+
 </head>
 <body>
 <?php
@@ -105,11 +107,22 @@ $comment_data = json_encode($data);
                     <?php
                     // Enable like functionality
                     if($loggedIn) {
-                    // listener is set in <a> in js script to POST a user like
-                    echo "<div id=\"like\" style=\"position:absolute;bottom:0;\"><form id='like-form'><input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"blog_id\" value=\"".$blog_id."\"><input type=\"hidden\" name=\"action\" value=\"like\"><button type=\"submit\">Like</button></form>
-                          <p id=\"like_count\">".$blog["like_count"]."</p></div>";
+                    // Check if user has liked post before
+                    $sql = "SELECT * FROM blogLikes WHERE user_id= :user_id AND blog_id= :blog_id";
+
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute(['blog_id' => $blog_id, 'user_id' => $user_id]);
+                    $result = $stmt.fetch();
+
+                    // User did not like post already
+                    if(count($result) == 0) {
+                        // User UPDATE like and RESPONSE update count and REMOVE button...
+                        echo "<div id=\"like\" style=\"position:absolute;bottom:0;\"><form id='like-form'><input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"blog_id\" value=\"".$blog_id."\"><input type=\"hidden\" name=\"action\" value=\"like\"><button type=\"submit\">Like</button></form>
+                        <p id=\"like_count\">".$blog["like_count"]."</p></div>";
                     }
-                    echo "<div id=\"blog-contents\">".$blog['blog_contents']."</div>";
+                    } else {
+                        echo "<div id=\"blog-contents\">".$blog['blog_contents']."</div>";
+                    }
                     ?>
                 </p>
             </div>

@@ -1,7 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
 <?php
-include('php/like_handler.php');
 include('php/blogpost_handler.php');
 ?>
 <head>

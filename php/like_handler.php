@@ -26,6 +26,7 @@ function get_liked_posts($conn,$user_id){
 }
 function add_like($conn, $user_id, $post_id){
     // Insert like into join table
+    if($user_id)
     $sql = "INSERT INTO blogLikes (user_id,blog_id) VALUES(:user_id, :post_id)";
     $stmt = $conn->prepare($sql);
     $stmt -> execute([
@@ -58,10 +59,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'get') {
     get_liked_posts();
 }
 
-if (isset($_GET['action']) && $_GET['action'] == 'like') {
+if (isset($_POST['action']) && $_POST['action'] == 'like') {
 
     add_like($conn,$_POST['user_id'],$_POST['blog_id']);
 
+    // Return like count
     echo get_like_count($conn,$blog_id);
 }
 if (isset($_GET['action']) && $_GET['action'] == 'remove') {

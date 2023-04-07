@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('#like-form').submit(function (event) {
-        console.log("submitting")
+        console.log("submitting");
         event.preventDefault()
         var formData = $(this).serialize()
         $.ajax({
