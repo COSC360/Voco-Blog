@@ -7,9 +7,12 @@ window.onload = function () {
         const link = linkList[i];
         element.addEventListener("mouseover", function() {
             link.style.color = "blue";
+            element.style.cursor = "pointer";
         })
         element.addEventListener("mouseout", function() {
             link.style.color = "black";
+            element.style.cursor = "";
+
         })
 
         element.addEventListener("click", function() {
