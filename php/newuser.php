@@ -14,13 +14,22 @@
             $email = $_POST["email"];
             $user_password = $_POST["password"];
 
-            //Retrieve profile img contents
-            $cover_img = $_FILES["profile_picture"]["tmp_name"];
-            //Retrieve image path information
-            $img_path = $_FILES["profile_picture"]['name'];
-            $imageFileType = strtolower(pathinfo($img_path,PATHINFO_EXTENSION));
-            //Get image blob
-            $image_blob = file_get_contents($cover_img);
+
+
+            // Extract profile image file from user page
+            if(empty($_FILES)) {
+                //Retrieve profile img contents
+                $cover_img = $_FILES["profile_picture"]["tmp_name"];
+                $img_path = $_FILES["profile_picture"]['name'];
+                $imageFileType = strtolower(pathinfo($img_path,PATHINFO_EXTENSION));
+                //Get image blob
+                $image_blob = file_get_contents($cover_img);
+            } else {
+                // If image is not upload then set profile image to default
+                $image_blob = file_get_contents("../img/empty_profile.png");
+                $imageFileType = "png";
+            }
+
         } else {
             die();
         }

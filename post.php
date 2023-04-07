@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/comment.css">
+    <link rel="stylesheet" href="css/post.css">
+
     <script type="text/javascript" src="js/post.js"></script>
 
 </head>
@@ -91,42 +93,42 @@ $comment_data = json_encode($data);
 <div class="column">
     <div id="left">
         <?php
-        echo "<h2>" . $blog['blog_title'] . " - By " . $blog['username'] . "</h2>";
+        echo "<div id='blog-header'><h2>" . $blog['blog_title'] . " - By " . $blog['username'] . "</h2>";
+        if($loggedIn) {
+            // Check if user has liked post before
+            $sql = "SELECT * FROM blogLikes WHERE user_id= :user_id AND blog_id= :blog_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['blog_id' => $blog_id, 'user_id' => $user_id]);
+            $result = $stmt->fetch();
+
+            // User did not like post already
+            if($stmt -> rowCount() == 0) {
+                // User UPDATE like and RESPONSE update count and CHANGE button...
+                echo "<div id=\"like\"><form id='like-form'><input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"blog_id\" value=\"".$blog_id."\"><input type=\"hidden\" id=\"action\" name=\"action\" value=\"like\"><button id='like-btn' type=\"submit\">Like</button></form></div>";
+            } else {
+                //TODO: Unlike Option
+                echo "<div id=\"like\"><form id='like-form'><input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"blog_id\" value=\"".$blog_id."\"><input type=\"hidden\" id=\"action\" name=\"action\" value=\"unlike\"><button id='like-btn' type=\"submit\">Unlike</button></form></div>";
+            }
+            }
+            echo "<p id='like-count'>Likes: ".$blog['like_count']."</p>";
+
+
+
+
+            echo "</div>";
         ?>
-            <div  class="articleContainer" id="blog-view">
+            <div class="articleContainer">
                 <?php
             if(isset($blog["blog_img"]) && isset($blog["blog_img_type"])){
                 $imagedata = $blog["blog_img"];
                 $contentType = $blog["blog_img_type"];
                 echo "<figure><img src=\"data:image/" . $contentType . ";base64," . base64_encode($imagedata) . "\" height=\"50%\" width=\"50%\" /></figure>";
-            } else {
-                echo "No Img :(";
             }
+            //Display blog content
+            echo "<div id=\"blog-contents\"><p>".$blog['blog_contents']."</p></div>";
             ?>
-                <p style="white-space: pre-wrap;">
-                    <?php
-                    // Enable like functionality
-                    if($loggedIn) {
-                    // Check if user has liked post before
-                    $sql = "SELECT * FROM blogLikes WHERE user_id= :user_id AND blog_id= :blog_id";
 
-                    $stmt = $conn->prepare($sql);
-                    $stmt->execute(['blog_id' => $blog_id, 'user_id' => $user_id]);
-                    $result = $stmt.fetch();
-
-                    // User did not like post already
-                    if(count($result) == 0) {
-                        // User UPDATE like and RESPONSE update count and REMOVE button...
-                        echo "<div id=\"like\" style=\"position:absolute;bottom:0;\"><form id='like-form'><input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"blog_id\" value=\"".$blog_id."\"><input type=\"hidden\" name=\"action\" value=\"like\"><button type=\"submit\">Like</button></form>
-                        <p id=\"like_count\">".$blog["like_count"]."</p></div>";
-                    }
-                    } else {
-                        echo "<div id=\"blog-contents\">".$blog['blog_contents']."</div>";
-                    }
-                    ?>
-                </p>
             </div>
-        </div>
     </div>
     <div id="right">
 

@@ -14,7 +14,6 @@
         die("Error: User is not logged in");
     }
 
-    echo var_dump($_POST);
     // Validate contents from post request
     if(validatePostRequest($_POST,$_SERVER)) {
         $blog_title = $_POST["post_title"];
@@ -22,25 +21,33 @@
         //TODO:  For now only sends one category_id val, allow more then one
         $catagories = $_POST["categories"];
 
+        // Extract profile image file from user page
+        if(empty($_FILES)) {
         //Retrieve profile img contents
         $cover_img = $_FILES["cover_img"]["tmp_name"];
-        //Retrieve image path information
         $img_path = $_FILES["cover_img"]['name'];
         $imageFileType = strtolower(pathinfo($img_path,PATHINFO_EXTENSION));
         //Get image blob
         $image_blob = file_get_contents($cover_img);
+
+        // Validate img contents
+        if($_FILES["cover_img"]["size"] < 8000000 && ($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "gif") ) {
+            $uploadOk = 1;
+            echo "VALID IMAGE UPLOAD";
+     } else {
+        die("Error: Image is too large or image is invalid type");
+     }
+
+    } else {
+        // If image is not upload then set profile image to default
+        $image_blob = null;
+        $imageFileType = null;
+    }
+
         $like_count = 0;
     } else {
         die();
     }
-
-    // Validate img contents
-     if($_FILES["cover_img"]["size"] < 8000000 && ($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "gif") ) {
-        $uploadOk = 1;
-        echo "VALID IMAGE UPLOAD";
-     } else {
-        die("Error: Image is too large or image is invalid type");
-     }
 
     // // INSERT into Blogs
     $sql = "INSERT INTO Blogs (user_id,blog_title,blog_createdAt,blog_modifiedAt,blog_img,blog_img_type,blog_contents,like_count) VALUES (?,?,NOW(),NOW(),?,?,?,?)";

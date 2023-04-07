@@ -40,7 +40,7 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
 
         <?php
         if ($loggedIn && $isAdmin) {
-            echo "<div class=\"headbox\"><a href='profile.php'><img src=\"data:image/".$user["profile_picture_type"].";base64,".base64_encode($user["profile_picture"])."\" style=\"border:solid thin black;border-radius:50%\" height=\"30em\" width=\"30em\">".$username."</a><a href=\"admin.php\">Admin</a><a href='profile.php'>".$username."</a><a href='php/logout.php'>Log out</a></div>";
+            echo "<div class=\"headbox\"><a href='profile.php'><img src=\"data:image/".$user["profile_picture_type"].";base64,".base64_encode($user["profile_picture"])."\" style=\"border:solid thin black;border-radius:50%\" height=\"30em\" width=\"30em\">".$username."</a><a href=\"admin.php\">Admin</a><a href='php/logout.php'>Log out</a></div>";
         }elseif ($loggedIn){
             echo "<div class=\"headbox\"><a href='profile.php'><img src=\"data:image/".$user["profile_picture_type"].";base64,".base64_encode($user["profile_picture"])."\" style=\"border:solid thin black;border-radius:50%\" height=\"30em\" width=\"30em\">".$username."</a><a href='php/logout.php'>Logout</a></div>";
         } else {
