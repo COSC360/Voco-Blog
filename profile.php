@@ -5,10 +5,6 @@ include('php/db_connection.php');
 include('php/like_handler.php');
 include('php/blogpost_handler.php');
 include('php/user_handler.php');
-$conn = connect();
-
-
-
 ?>
 <head>
     <meta charset="utf-8">
@@ -28,11 +24,6 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
     exit();
 }
 ?>
-<!--TODO: Update 3 column layout to be prettier:
- Col 1: blog posts - view list of posted blogs, ability to view/edit/delete
- Col 2: Account Information - View account info, ability to edit account profile / delete account
- Col 3: Saved posts - Ability to access saved posts / remove saved posts
- -->
 
 <div class="column">
     <div class="card">

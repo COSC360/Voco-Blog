@@ -42,6 +42,7 @@
 .entry-buttons button {
     float: right;
 }
+
 #sidenav {
     display: flex;
     flex-direction: row;
