@@ -1,31 +1,5 @@
 <!doctype html>
 <html class="no-js" lang="">
-<?php
-include('php/db_connection.php');
-$conn = connect();
-
-if (!isset($_GET['blog_id'])) {
-    header('Location: index.php');
-    exit;
-}
-$blog_id = $_GET['blog_id'];
-
-// Get blog post
-$sql = "SELECT blog.*, user.username, category.category_name
-            FROM Blogs AS blog
-            INNER JOIN Users AS user ON blog.user_id = user.user_id
-            JOIN blogCategory AS bc ON blog.blog_id = bc.blog_id
-            JOIN Category category ON bc.category_id = category.category_id
-            WHERE blog.blog_id = :blog_id";
-$stmt = $conn->prepare($sql);
-$stmt->execute(['blog_id' => $blog_id]);
-$blog = $stmt->fetch();
-if (!$blog) {
-    header('Location: index.php');
-    exit;
-}
-
-?>
 <head>
     <meta charset="utf-8">
     <title>VOCO Blog - <?php echo $blog['blog_title'] ?></title>
@@ -44,6 +18,23 @@ $data = array(
     'user_id' => $user_id,
     'action' => 'get_blog_comments'
 );
+
+
+// Get blog posts
+$sql = "SELECT blog.*, user.username, category.category_name
+        FROM Blogs AS blog
+        INNER JOIN Users AS user ON blog.user_id = user.user_id
+        JOIN blogCategory AS bc ON blog.blog_id = bc.blog_id
+        JOIN Category category ON bc.category_id = category.category_id
+        WHERE blog.blog_id = :blog_id";
+$stmt = $conn->prepare($sql);
+$stmt->execute(['blog_id' => $blog_id]);
+$blog = $stmt->fetch();
+if (!$blog) {
+    header('Location: index.php');
+    exit;
+}
+
 
 $comment_data = json_encode($data);
 ?>

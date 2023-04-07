@@ -14,7 +14,7 @@ function connect(){
 }
 
 function close_connection($conn){
-    $conn -> close();
+    $conn = null;
 }
 
 

@@ -1,31 +1,27 @@
 <!doctype html>
 <html class="no-js" lang="">
-<?php
-include('php/db_connection.php');
-$conn = connect();
-// TODO: Update so that filters work - maybe extract to different file?
-// Get Blog Posts
-$sql = "SELECT blog.*, user.username
-        FROM Blogs blog
-        INNER JOIN Users user ON blog.user_id = user.user_id";
-$blogs = $conn->query($sql);
-// Get all categories
-$sql = "SELECT * FROM Category";
-$categories = $conn->query($sql);
-$conn = null;
 
-
-?>
 <head>
     <meta charset="utf-8">
     <title>VOCO Blog - Home</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="js/clickblog.js"></script>
 </head>
 <body>
 <?php
-include('php/header.php') ?>
+include('php/header.php');
+// TODO: Update so that filters work - maybe extract to different file?
+// Get Blog Posts
+$sql = "SELECT blog.*, user.username, user.profile_picture, profile_picture_type
+        FROM Blogs blog
+        INNER JOIN Users user ON blog.user_id = user.user_id";
+$blogs = $conn->query($sql);
+// Get all categories
+$sql = "SELECT * FROM Category";
+$categories = $conn->query($sql);
+?>
 <div class="column">
     <div id="left">
         <h2>Recent Posts</h2>
@@ -40,8 +36,10 @@ include('php/header.php') ?>
                     $contentType = $row["blog_img_type"];
                     echo "<figure><img src=\"data:image/".$contentType.";base64,".base64_encode($imagedata)."\" height=\"100%\" width=\"100%\" /></figure>";
                 }
-                echo "<div class='blog-title'><h3><a href='post.php?blog_id=" . $row['blog_id'] . "'>".$row['blog_title']." - By ".$row['username']."</a></h3></div>";
+                echo "<div class='blog-title'><h3><a class='blog-link' href='post.php?blog_id=" . $row['blog_id'] . "'>".$row['blog_title']."</a></h3></div>";
+                echo "<div><h3> By: ".$row['username']."</h3></div>";
                 echo "<div class='blog-preview'><p>". substr($row['blog_contents'], 0, 100)."</p></div>";
+                echo "<div class='blog-author'><a href='profile.php' style='padding:0.5em'><img src=\"data:image/".$row["profile_picture_type"].";base64,".base64_encode($row["profile_picture"])."\" style=\"border:solid thin black;border-radius:50%\" height=\"30em\" width=\"30em\"></a><h3>".$row['username']."</h3></div>";
                 echo "</div>";
             }
             ?>

@@ -162,31 +162,53 @@ h1,h2,h3,p,a,button,legend,label {
 /*TODO: Update spacing & styling */
 /*Blog Post*/
 .entry{
+    position: relative;
     overflow: hidden;
     padding: 1em;
     margin: 1em 0.5em 1em 0.5em;
-    border: black thin solid;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 4px 12px;
     height: 14em;
-
+    border-radius: 25px;
 }
+
+entry
 
 .blog-title p {
     vertical-align: middle;
     padding: 0em 1em 0em 1em;
 }
+
+.blog-title h3 {
+    font-size: 25px;
+}
 .blog-preview{
     padding: 0.5em;
     float: left;
     overflow: hidden;
-
 }
 
+.blog-author{
+    display: flex;
+    align-items: center;
+    position: absolute ;
+    overflow: scroll;
+    bottom: 0;
+    width: 100%;
+}
 .entry figure {
-    border: black thin solid;
     float: right;
     position: relative;
     height: 13em;
     width: 13em;
+}
+
+.entry img {
+    border-radius: 15px;
+}
+
+.entry a, a:visited{
+    color: black;
+    text-decoration: none;
 }
 
 
