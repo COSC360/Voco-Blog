@@ -55,14 +55,6 @@ window.onload = function()
                 makeClean(requiredInputs[i]);
             }
         }
-        if (err == true)
-        {
-            e.preventDefault();
-        }
-        else
-        {
-            console.log('checking match');
-            checkPasswordMatch(e);
-        }
+        checkPasswordMatch(e);
     }
 }
