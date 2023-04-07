@@ -61,7 +61,7 @@
               </div>
               <div>
                 <label for="profile_picture">Profile Picture</label>
-                <input type="file" name="profile_picture" id="profile_picture">
+                <input type="file" name="profile_picture" id="profile_picture" accept=".jpg,.png,.gif">
               </div>
               <div>
                   <label for="password">Password</label>

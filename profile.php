@@ -1,8 +1,5 @@
 <!doctype html>
 <html class="no-js" lang="">
-<?php
-include('php/blogpost_handler.php');
-?>
 <head>
     <meta charset="utf-8">
     <title>VOCO Blog - Profile</title>
@@ -11,15 +8,19 @@ include('php/blogpost_handler.php');
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/profile.css">
     <script type="text/javascript" src="js/table_handler.js"></script>
+    <script type="text/javascript" src="js/validate_update.js"></script>
 </head>
+
 <body>
 <?php
 include('php/header.php');
+include('php/blogpost_handler.php');
 if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
-    header("Location: register.html");
+    header("Location: register.php");
     exit();
 }
 ?>
+
 
 <div class="column">
     <div class="card">
@@ -45,7 +46,7 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
         ?>
         <div class="profile-contents">
 
-         <?php echo "<figure><img class=\"profile-pic\" src=\"data:image/".$user["profile_picture_type"].";base64,".base64_encode($user["profile_picture"])."\" height=\"100%\" width=\"100%\" /></figure>"; ?>;
+         <?php echo "<figure><img class=\"profile-pic\" src=\"data:image/".$user["profile_picture_type"].";base64,".base64_encode($user["profile_picture"])."\" height=\"100%\" width=\"100%\" /></figure>" ?>
 
             <p>First Name: <?php echo $user['first_name']?> <br> Last Name: <?php echo $user['last_name']?></p>
             <p>Email: <?php echo $user['email'] ?></p>
@@ -53,10 +54,47 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
         </div>
         <div id="profile-buttons">
             <a href='php/delete_user.php?user_id=<?php echo $_SESSION['active_user_id']?>'><button>Delete Account</button></a>
-            <!--TODO: implement this-->
-            <button>Edit Profile</button>
+            <button id="edit-profile-btn"">Edit Profile</button>
         </div>
 
+    </div>
+    <div id="edit-profile-popup" class="popup">
+        <div class="singleColumn popup-content">
+            <form action="php/update_user.php" method="POST" class="user-form" id="updateuser-form" enctype="multipart/form-data">
+                <input type="hidden" name="user_id" value='<?php echo $user_id ?>'>
+                <div>
+                    <label for="firstname">First Name</label>
+                    <input required type="text" name="firstname" id="firstname" value='<?php echo $user['first_name'] ?>'>
+                </div>
+                <div>
+                    <label for="lastname">Last Name</label>
+                    <input required type="text" name="lastname" id="lastname" value='<?php echo $user['last_name'] ?>'>
+                </div>
+                <div>
+                    <label for="username">Username</label>
+                    <input required type="text" name="username" id="username" value='<?php echo $user['username'] ?>'>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input required type="email" name="email" id="email" value='<?php echo $user['email'] ?>'>
+                </div>
+                <div>
+                    <label for="profile_picture">Profile Picture</label>
+                    <input type="file" name="profile_picture" id="profile_picture" accept=".jpg,.png,.gif">
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter new Password">
+                </div>
+                <div>
+                    <label for="verifyPassword">Confirm Password</label>
+                    <input type="password" name="verifyPassword" id="verifyPassword" placeholder="Verify Password">
+                    <button type="button" id="cancel-edit-btn">Cancel</button>
+                    <button type="submit">Update</button>
+                </div>
+            </form>
+
+        </div>
     </div>
     <div class="card">
         <div id="sidenav">
@@ -81,6 +119,25 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
 <footer>
 
 </footer>
+<script>
+    function closeEditProfilePopup() {
+        // Remove the popup from the page
+        var popup = document.getElementById("edit-profile-popup");
+        popup.parentNode.removeChild(popup);
+    }
+    // document.getElementById("edit-profile-popup").addEventListener("click", function) {
+    //     // document.getElementById("edit-profile-popup").style.display = "none";
+    // }
+
+    document.getElementById("cancel-edit-btn").addEventListener("click", function () {
+        document.getElementById('edit-profile-popup').style.display = "none";
+    })
+    document.getElementById("edit-profile-btn").addEventListener("click", function() {
+        // Show the popup form by setting its display property to "block"
+        document.getElementById("edit-profile-popup").style.display = "block";
+    });
+
+</script>
 </body>
 
 </html>
