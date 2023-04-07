@@ -1,16 +1,19 @@
-window.onload = function() {
-
-    var form = document.getElementById("like-form");
-
-    $
-    like_btn.addEventListener("onclick",function() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if(this.readyState == 4 && this.status == 200) {
-                document.getElementById("like_count").innerHTML = this.responseText;
+$(document).ready(function () {
+    $('#like-form').submit(function (event) {
+        console.log("submitting")
+        event.preventDefault()
+        var formData = $(this).serialize()
+        $.ajax({
+            url: 'php/like_handler.php',
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                $('#like_count').append(response)
+                //TODO: Change format of the btn, so that USER cannot LIKE again
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
             }
-        };
-        xhttp.open("GET",pagename+"?tablename="+tablename,true);
-        xhttp.send();
+        })
     })
-}
+})

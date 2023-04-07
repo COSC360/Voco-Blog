@@ -1,5 +1,7 @@
 <?php
+include("db_connection.php");
 
+$conn = connect();
 
 function get_liked_posts($conn,$user_id){
     // TODO: Decide if we also want blog contents
@@ -49,7 +51,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'get') {
 }
 
 if (isset($_GET['action']) && $_GET['action'] == 'like') {
-    add_like();
+
+    add_like($conn,);
 }
 if (isset($_GET['action']) && $_GET['action'] == 'remove') {
     remove_like();

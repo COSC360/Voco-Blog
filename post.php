@@ -2,7 +2,7 @@
 <html class="no-js" lang="">
 <head>
     <meta charset="utf-8">
-    <title>VOCO Blog - <?php echo $blog['blog_title'] ?></title>
+    <title>VOCO Blog Page</title>
     <link rel="stylesheet" href="css/reset.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script></script>
@@ -13,11 +13,12 @@
 <body>
 <?php
 include('php/header.php');
-$data = array(
-    'blog_id' => $blog_id,
-    'user_id' => $user_id,
-    'action' => 'get_blog_comments'
-);
+
+if(!isset($_GET['blog_id'])){
+    header('Location: index.php');
+    exit;
+}
+$blog_id = $_GET['blog_id'];
 
 
 // Get blog posts
@@ -35,6 +36,11 @@ if (!$blog) {
     exit;
 }
 
+$data = array(
+    'blog_id' => $blog_id,
+    'user_id' => $user_id,
+    'action' => 'get_blog_comments'
+);
 
 $comment_data = json_encode($data);
 ?>
@@ -85,11 +91,6 @@ $comment_data = json_encode($data);
         <?php
         echo "<h2>" . $blog['blog_title'] . " - By " . $blog['username'] . "</h2>";
         ?>
-        <div class="articleContainer">
-            <?php
-            if (isset($blog["blog_img"]) && isset($blog["blog_img_type"])) {
-            echo "<h2>".$blog['blog_title']." - By ".$blog['username']."</h2>";
-            ?>
             <div  class="articleContainer" id="blog-view">
                 <?php
             if(isset($blog["blog_img"]) && isset($blog["blog_img_type"])){
@@ -110,7 +111,7 @@ $comment_data = json_encode($data);
                     // Enable like functionality
                     if($loggedIn) {
                     // listener is set in <a> in js script to POST a user like
-                    echo "<div id=\"like\" style=\"position:absolute;bottom:0;\"><form id='like-form'><input type=\"hidden\" name=\"user-id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"action\" value=\"like\"><button type=\"submit\">Like</button></form>
+                    echo "<div id=\"like\" style=\"position:absolute;bottom:0;\"><form id='like-form'><input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"action\" value=\"like\"><button type=\"submit\">Like</button></form>
                           <p id=\"like_count\">".$blog["like_count"]."</p></div>";
                     }
                     echo "<div id=\"blog-contents\">".$blog['blog_contents']."</div>";
