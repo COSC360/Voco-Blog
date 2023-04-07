@@ -10,15 +10,14 @@ $isAdmin = null;
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
     $user_id = $_SESSION['active_user_id'];
+    $user = get_user($conn, $user_id);
+
 }
 
 if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
     $loggedIn = true;
     $isAdmin = $_SESSION["isAdmin"];
 }
-
-$user = get_user($conn, $user_id);
-
 ?>
 
 <header>
@@ -41,7 +40,7 @@ $user = get_user($conn, $user_id);
 
         <?php
         if ($loggedIn && $isAdmin) {
-            echo "<div class=\"headbox\"><a href=\"admin.php\">Admin</a><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
+            echo "<div class=\"headbox\"><a href='profile.php'><img src=\"data:image/".$user["profile_picture_type"].";base64,".base64_encode($user["profile_picture"])."\" style=\"border:solid thin black;border-radius:50%\" height=\"30em\" width=\"30em\">".$username."</a><a href=\"admin.php\">Admin</a><a href='profile.php'>".$username."</a><a href='php/logout.php'>Log out</a></div>";
         }elseif ($loggedIn){
             echo "<div class=\"headbox\"><a href='profile.php'><img src=\"data:image/".$user["profile_picture_type"].";base64,".base64_encode($user["profile_picture"])."\" style=\"border:solid thin black;border-radius:50%\" height=\"30em\" width=\"30em\">".$username."</a><a href='php/logout.php'>Logout</a></div>";
         } else {

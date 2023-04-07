@@ -1,17 +1,19 @@
 window.onload = function () {
-    const entryList = document.querySelectoAll(".entry");
-    const link = document.querySelector(".blog-link");
+    const entryList = document.querySelectorAll(".entry");
+    const linkList = document.querySelectorAll(".blog-link");
 
     for (let i = 0; i < entryList.length; i++) {
         const element = entryList[i];
+        const link = linkList[i];
+        element.addEventListener("click", function() {
+            clickentry(event,link)
+        })
     }
 
-    // TODO: FIX LINKS
-entry.addEventListener("click", clickentry)
 
 
-function clickentry(event) {
-    console.log(link);
+
+function clickentry(event,link) {
     link.click();
 
 }
