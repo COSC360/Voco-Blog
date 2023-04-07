@@ -88,6 +88,11 @@ $comment_data = json_encode($data);
         <div class="articleContainer">
             <?php
             if (isset($blog["blog_img"]) && isset($blog["blog_img_type"])) {
+            echo "<h2>".$blog['blog_title']." - By ".$blog['username']."</h2>";
+            ?>
+            <div  class="articleContainer" id="blog-view">
+                <?php
+            if(isset($blog["blog_img"]) && isset($blog["blog_img_type"])){
                 $imagedata = $blog["blog_img"];
                 $contentType = $blog["blog_img_type"];
                 echo "<figure><img src=\"data:image/" . $contentType . ";base64," . base64_encode($imagedata) . "\" height=\"50%\" width=\"50%\" /></figure>";
@@ -100,6 +105,18 @@ $comment_data = json_encode($data);
                 echo $blog['blog_contents'];
                 ?>
             </p>
+                <p style="white-space: pre-wrap;">
+                    <?php
+                    // Enable like functionality
+                    if($loggedIn) {
+                    // listener is set in <a> in js script to POST a user like
+                    echo "<div id=\"like\" style=\"position:absolute;bottom:0;\"><form id='like-form'><input type=\"hidden\" name=\"user-id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"action\" value=\"like\"><button type=\"submit\">Like</button></form>
+                          <p id=\"like_count\">".$blog["like_count"]."</p></div>";
+                    }
+                    echo "<div id=\"blog-contents\">".$blog['blog_contents']."</div>";
+                    ?>
+                </p>
+            </div>
         </div>
     </div>
     <div id="right">

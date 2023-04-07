@@ -159,6 +159,11 @@ h1,h2,h3,p,a,button,legend,label {
     white-space: nowrap;
 }
 
+#blog-view{
+    position: relative;
+
+}
+
 /*TODO: Update spacing & styling */
 /*Blog Post*/
 .entry{
@@ -171,7 +176,7 @@ h1,h2,h3,p,a,button,legend,label {
     border-radius: 25px;
 }
 
-entry
+
 
 .blog-title p {
     vertical-align: middle;
