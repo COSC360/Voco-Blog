@@ -58,7 +58,7 @@ $comments = $stmt -> fetchAll();
             <?php
             echo "<h2>".$blog['blog_title']." - By ".$blog['username']."</h2>";
             ?>
-            <div  class="articleContainer">
+            <div  class="articleContainer" id="blog-view">
                 <?php
             if(isset($blog["blog_img"]) && isset($blog["blog_img_type"])){
                 $imagedata = $blog["blog_img"];
@@ -70,7 +70,13 @@ $comments = $stmt -> fetchAll();
                 ?>
                 <p style="white-space: pre-wrap;">
                     <?php
-                    echo $blog['blog_contents'];
+                    // Enable like functionality
+                    if($loggedIn) {
+                    // listener is set in <a> in js script to POST a user like
+                    echo "<div id=\"like\" style=\"position:absolute;bottom:0;\"><form id='like-form'><input type=\"hidden\" name=\"user-id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"action\" value=\"like\"><button type=\"submit\">Like</button></form>
+                          <p id=\"like_count\">".$blog["like_count"]."</p></div>";
+                    }
+                    echo "<div id=\"blog-contents\">".$blog['blog_contents']."</div>";
                     ?>
                 </p>
             </div>

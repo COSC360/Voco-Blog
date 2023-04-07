@@ -12,8 +12,6 @@ include('php/blogpost_handler.php');
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/profile.css">
     <script type="text/javascript" src="js/table_handler.js"></script>
-
-
 </head>
 <body>
 <?php
