@@ -5,6 +5,13 @@ window.onload = function () {
     for (let i = 0; i < entryList.length; i++) {
         const element = entryList[i];
         const link = linkList[i];
+        element.addEventListener("mouseover", function() {
+            link.style.color = "blue";
+        })
+        element.addEventListener("mouseout", function() {
+            link.style.color = "black";
+        })
+
         element.addEventListener("click", function() {
             clickentry(event,link)
         })

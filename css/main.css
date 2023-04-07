@@ -166,6 +166,7 @@ h1,h2,h3,p,a,button,legend,label {
     border-radius: 25px;
 }
 
+
 .blog-title p {
     vertical-align: middle;
     padding: 0em 1em 0em 1em;
@@ -178,7 +179,6 @@ h1,h2,h3,p,a,button,legend,label {
     padding: 0.5em;
     float: left;
     overflow: hidden;
-    background-color: blue;
 }
 
 .blog-author{
@@ -200,10 +200,11 @@ h1,h2,h3,p,a,button,legend,label {
     border-radius: 15px;
 }
 
-.entry a, a:hover, a:visited{
+.entry a, a:visited{
     color: black;
     text-decoration: none;
 }
+
 
 .blog-preview {
     float: left;
