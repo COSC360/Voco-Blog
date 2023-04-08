@@ -66,6 +66,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'like') {
 
 }
 
+
 if (isset($_POST['action']) && $_POST['action'] == 'unlike') {
 
 
@@ -73,5 +74,13 @@ if (isset($_POST['action']) && $_POST['action'] == 'unlike') {
 
 
     echo get_like_count($conn,$_POST['blog_id']);
+
+}
+
+if (isset($_POST['action']) && $_POST['action'] == 'profile-unlike') {
+
+    remove_like($conn, $_POST['user_id'],$_POST['blog_id']);
+
+    header("Location: ../profile.php?user_id=".$_POST["user_id"]);
 
 }

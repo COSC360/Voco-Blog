@@ -4,7 +4,7 @@ include("validateRequests.php");
 include("comment_handler.php");
 include("like_handler.php");
 
-session_start();
+
 
 $conn = connect();
 
@@ -24,11 +24,13 @@ if($tablename == "likedposts") {
     $result = get_liked_posts($conn,$user_id);
     // Set up for unlike actions
     $id = "user_id";
-    $action = "like_handler.php?action=delete&id=".$user_id;
+    $path = "like_handler.php";
+    $action = "profile-unlike";
 } elseif ($tablename == "usercomments") {
     $result = get_user_comments($conn,$user_id);
-    $id = "user_id";
-    $action = "comment_handler.php?action=delete";
+    $id = "comment_id";
+    $path = "comment_handler.php";
+    $action = "profile-delete";
 } else {
     echo("Error: Invalid request parameter");
     die();
@@ -64,7 +66,7 @@ if(count($result) > 0 ) {
                 $row .= "<td>".$value."</td>";
             }
         }
-        $delete = "<td><form method=\"GET\" action=\"php/".$action."\"><input type=\"hidden\" name=".$id."\" value=\"".$entry[0]."\"><button type=\"submit\">Delete</button></form></td>";
+        $delete = "<td><form method=\"POST\" action='php/".$path."'><input type='hidden' name='action' value='".$action."'><input type='hidden' name='comment_id' value='".$entry[0]."'><input type='hidden' name='blog_id' value='".$entry[0]."'><input type='hidden' name='user_id' value='".$user_id."'><button type=\"submit\">Delete</button></form></td>";
         $tbody .= $row.$delete."</tr>";
     }
     $table .= $tbody."</tbody></table>";
