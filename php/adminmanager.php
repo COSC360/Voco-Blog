@@ -4,6 +4,16 @@
 
 
     $pdo = connect();
+    session_start();
+
+    if (isset($_SESSION["username"])) {
+        $username = $_SESSION["username"];
+        $user_id = $_SESSION['active_user_id'];
+    }else{
+        die();
+    }
+
+    session_abort();
 
     if(validateGetRequest($_GET,$_SERVER)){
         $tablename = $_GET["tablename"];
@@ -66,11 +76,16 @@
                 $row .= "<td>".$value."</td>";
                 }
             }
-            $delete = "<td><form method=\"GET\" action=\"php/".$action."\"><input type=\"hidden\" name=\"".$id."\" value=\"".$entry[0]."\"><button type=\"submit\">Delete</button></form></td>";
-            $tbody .= $row.$delete;
+            $tbody .= $row;
 
             //Add 'admin button' for user page
             if($tablename=="user" ) {
+                // Delete user button
+                if($entry[0] != $user_id) {
+                $delete = "<td><form method=\"GET\" action=\"php/".$action."\"><input type=\"hidden\" name=\"".$id."\" value=\"".$entry[0]."\"><button type=\"submit\">Delete</button></form></td>";
+                $tbody .=$delete;
+                }
+
                 //Check if current user is a USER, then add 'add admin'
                 if($entry['role_id'] == 1) {
                 $addadmin = "<td><form method='POST' action='php/addadmin.php'><input type='hidden' name='".$id."' value='".$entry[0]."'><button type='submit'>Add Admin</button></form></td>";
@@ -79,9 +94,11 @@
             }
             //Add 'admin button' remove admin for admin page
             if($tablename=="admin" ) {
+                // Do no add remove admin to current user
+                if($entry[0] != $user_id) {
                 $removedadmin = "<td><form method='POST' action='php/removeadmin.php'><input type='hidden' name='".$id."' value='".$entry[0]."'><button type='submit'>Remove Admin</button></form></td>";
                 $tbody .= $removedadmin;
-
+                }
             }
 
             $tbody.="</tr>";
