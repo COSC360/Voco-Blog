@@ -51,7 +51,6 @@ $categories = $conn->query($sql);
 
                 foreach($categoryList as $cat) {
                     $blog_categories .="<div class='cat-item'>".$cat['category_name']."</div>";
-
                 }
                 echo $blog_categories."</div>";
                 echo "</div>";

@@ -206,6 +206,10 @@ h1,h2,h3,p,a,button,legend,label {
     right: 0;
     width: 50%;
 }
+
+.cat-item {
+    padding: 1.0em;
+}
 .entry figure {
     float: right;
     position: relative;
