@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/enf2qyfT)
 A blog type website created by Edouard Eltherington and Logan Parker for the COSC 360 - Web Programming term project. 
 This blog is designed to be a blogging website for members of the Varsity Outdoors Club of the Okanagan. It is our 
 hope that club members will use this blog to post trip reports, stories, and other kinds of content.
