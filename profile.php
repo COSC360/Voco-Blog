@@ -10,7 +10,29 @@
     <script type="text/javascript" src="js/table_handler.js"></script>
     <script type="text/javascript" src="js/validate_update.js"></script>
 </head>
+<script>
 
+    function checkMatchingPassword(e) {
+
+
+        var password = document.getElementById("password");
+        var password_check = document.getElementById("verifyPassword");
+
+        if(password.value === password_check.value) {
+            mainForm.submit();
+        } else {
+            makeRed(password);
+            makeRed(password_check);
+            alert("Passwords do not match");
+            e.preventDefault();
+        }
+
+        function makeRed(inputDiv) {
+            inputDiv.style.borderColor="#AA0000";
+        }
+
+    }
+</script>
 <body>
 <?php
 include('php/header.php');
@@ -120,14 +142,7 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
 
 </footer>
 <script>
-    function closeEditProfilePopup() {
-        // Remove the popup from the page
-        var popup = document.getElementById("edit-profile-popup");
-        popup.parentNode.removeChild(popup);
-    }
-    // document.getElementById("edit-profile-popup").addEventListener("click", function) {
-    //     // document.getElementById("edit-profile-popup").style.display = "none";
-    // }
+
 
     document.getElementById("cancel-edit-btn").addEventListener("click", function () {
         document.getElementById('edit-profile-popup').style.display = "none";
