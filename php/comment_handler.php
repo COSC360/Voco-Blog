@@ -141,7 +141,7 @@ function display_comment($conn, $comment, $displayed_comments = array())
 if (isset($_POST['action']) && $_POST['action'] == 'new_comment') {
     $comment_id = post_comment($conn, $_POST['user_id'], $_POST['blog_id'], $_POST['comment_contents'], isset($_POST['parent_id']) ? $_POST['parent_id'] : NULL);
     $comment = get_comment($conn, $comment_id);
-    display_comment($conn, $comment);
+    echo display_comment($conn, $comment);
 }
 if (isset($_POST['action']) && $_POST['action'] == 'reply_comment') {
     $comment_id = post_comment($conn, $_POST['user_id'], $_POST['blog_id'], $_POST['comment_contents'], isset($_POST['parent_id']) ? $_POST['parent_id'] : NULL);
