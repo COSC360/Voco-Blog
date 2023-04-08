@@ -15,9 +15,15 @@
 
 <body>
 <?php
-if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) || $_SESSION["isAdmin"] == false){
-    header("Location: index.php");
+
+session_start();
+
+if((isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) && $_SESSION["isAdmin"] == false){
+   header("Location: index.php");
 }
+
+session_abort();
+
 
 // MUST BE DECLARED AFTER ANY HEADER
 include('php/header.php');
