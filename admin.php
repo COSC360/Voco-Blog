@@ -15,10 +15,13 @@
 
 <body>
 <?php
-include('php/header.php');
-if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) || !$isAdmin){
+if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) || $_SESSION["isAdmin"] == false){
     header("Location: index.php");
 }
+
+// MUST BE DECLARED AFTER ANY HEADER
+include('php/header.php');
+
 ?>
 
 <!--TODO: Update 3 column layout to be prettier:
