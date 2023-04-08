@@ -79,16 +79,17 @@ h1,h2,h3,p,a,button,legend,label {
     margin:5%
 }
 .column #right {
-    flex: 0 0 0;
+    /*flex: 0 0 0;*/
     width: 25%;
     margin: 1em;
-    padding: 5%;
+    padding: 1em;
+    /*padding: 5%;*/
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
-.column #right #comments{
-    width:20em;
-    height: 20em;
-}
+/*.column #right #comments{*/
+/*    width:20em;*/
+/*    height: 20em;*/
+/*}*/
 
 /*Header elements at the top of page*/
 

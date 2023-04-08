@@ -90,7 +90,6 @@ details.comment:not([open]) .comment-heading::after {
 }
 
 /* Styling the reply to comment form */
-
 .reply-form textarea {
 
     width: 100%;

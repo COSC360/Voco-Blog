@@ -131,7 +131,7 @@ $comment_data = json_encode($data);
             </div>
     </div>
     <div id="right">
-
+        <div id ='comments'>
             <form method="post" id="commentForm">
                 <label>
                     <input required type="text" name="comment_contents" placeholder="Write a comment..." maxlength="256" <?php if(!$loggedIn) echo "disabled" ?>>
@@ -143,6 +143,8 @@ $comment_data = json_encode($data);
             </form>
             <div class="articleContainer" id="commentContainer">
             </div>
+        </div>
+
     </div>
 </div>
 <footer>
