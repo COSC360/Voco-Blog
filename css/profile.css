@@ -35,7 +35,7 @@
 }
 
 .entry-buttons {
-    height: 4em;
+    height: 2em;
     width: 100%;
 }
 
@@ -43,4 +43,66 @@
     float: right;
 }
 
+#sidenav {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    justify-content: center;
+    border-bottom: solid thin lightgrey;
+}
 
+#sidenav a {
+    margin: 2em;
+}
+
+#sidenav a:hover {
+    color: blue;
+}
+
+
+table {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    padding: 5px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+#profilepicture{
+    border-bottom: solid thin lightgrey;
+}

@@ -32,7 +32,10 @@
     margin: 3em;
 }
 
-
+table {
+    text-align: center;
+    text-overflow: ellipsis;
+}
 
 table thead{
     background-color: grey;

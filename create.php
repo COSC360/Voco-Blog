@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>VOCO Blog - Home</title>
+    <title>VOCO Blog - Create</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -12,26 +12,20 @@
 </head>
 
 <body>
-<header>
-    <nav class="navbar">
+    <?php
+    include('php/header.php');
 
-        <div class="headbox">
-          <!--TODO: Include Logo Image-->
-          <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
-        </div>
-
-        <div class="headbox">
-          <a href="index.php">Back</a>
-        </div>
-      </nav>
-</header>
+    if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
+        header("Location: index.php");
+        exit();
+    }
+    ?>
 <form action="php/create_blog.php" method="post" enctype="multipart/form-data">
     <div class="column">
         <div id="left">
             <h2>Create A Post:</h2>
                 <label>
-                    <textarea id="blogText" name="blog_contents" type="text" cols="10" rows="5" >
-                    </textarea>
+                    <textarea id="blogText" name="blog_contents" type="text" cols="10" rows="5" ></textarea>
                 </label>
         </div>
         <div id="right">
@@ -41,15 +35,21 @@
                     <input required type="text" id="postTitle" name="post_title">
                 </div>
                 <div class="postInput">
-                    <label for="categories">Select Post Categories</label>
-                    <select name="categories" id="categories" type="dropdown">
-                        <option value="1">Climb</option>
-                        <option value="2">Hike</option>
+                    <label for="categories[]">Select Post Categories</label>
+                    <select name="categories[]" id="categories[]" type="dropdown" multiple>
+                        <?php
+                            // Get all categories
+                            $sql = "SELECT * FROM Category";
+                            $categories = $conn->query($sql);
+                            while($row = $categories->fetch()){
+                                echo "<option value='".$row['category_id']."'>".$row['category_name']."</option>";
+                            }
+                        ?>
                     </select>
                 </div>
                 <div class="postInput">
                     <label for="bannerImage">Upload Cover Image:</label>
-                    <input type="file" name="cover_img" id="bannerImage">
+                    <input type="file" name="cover_img" id="bannerImage" accept=".jpg,.png,.gif">
                 </div>
                 <div class="postInput">
                     <label id="createPostButton">
@@ -64,7 +64,6 @@
 <footer>
 
 </footer>
-<script src="js/main.js"></script>
 </body>
 
 </html>

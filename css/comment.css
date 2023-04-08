@@ -1,0 +1,102 @@
+* {
+    box-sizing: border-box;
+}
+
+button {
+    padding: 0.5em;
+    /*     color: rgba(0, 0, 0, 0.85); */
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+button:hover,
+button:focus,
+button:active {
+    cursor: pointer;
+    background-color: whitesmoke;
+}
+.comment-thread {
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    padding: 0 2em;
+    background-color: white;
+    border: 1px solid transparent; /* Removes margin collapse */
+}
+.m-0 {
+    margin: 0;
+}
+
+/* Comment */
+
+.comment {
+    position: relative;
+    margin: 1.5em auto;
+}
+.comment-heading {
+    display: flex;
+    align-items: center;
+    height: 5em;
+}
+.comment-info {
+    color: rgba(0, 0, 0, 0.5);
+    margin-left: 0.5em;
+}
+.comment-author {
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: bold;
+    text-decoration: none;
+}
+.comment-author:hover {
+    text-decoration: underline;
+}
+.replies {
+    margin-left: 5em;
+}
+
+.comment-body {
+    padding: 0 5em 0 2em;
+}
+.replies {
+    margin-left: 2em;
+}
+
+/* Adjustments for toggleable comments */
+
+details.comment summary {
+    position: relative;
+    list-style: none;
+    cursor: pointer;
+}
+details.comment summary::-webkit-details-marker {
+    display: none;
+}
+details.comment:not([open]) .comment-heading {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.comment-heading::after {
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    align-self: center;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.55);
+}
+details.comment[open] .comment-heading::after {
+    content: "Click to hide";
+}
+details.comment:not([open]) .comment-heading::after {
+    content: "Click to show";
+}
+
+/* Styling the reply to comment form */
+.reply-form textarea {
+
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+.d-none {
+    display: none;
+}

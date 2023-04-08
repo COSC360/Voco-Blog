@@ -27,6 +27,9 @@ if(isset($_GET['blog_id'])) {
         $conn = null;
         exit();
     }
+    $sql = "DELETE FROM blogLikes WHERE blog_id = :blog_id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(['blog_id' => $blog_id]);
     // delete blog from categories
     $sql = "DELETE FROM blogCategory WHERE blog_id = :blog_id";
     $stmt = $conn->prepare($sql);

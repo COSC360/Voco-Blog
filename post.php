@@ -1,189 +1,171 @@
 <!doctype html>
 <html class="no-js" lang="">
-<?php
-    session_start();
-    $username = null;
-    $loggedIn = null;
-    $isAdmin = null;
-
-    if (isset($_SESSION["username"])) {
-        $username = $_SESSION["username"];
-        $user_id = $_SESSION['active_user_id'];
-    }
-
-    if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
-        $loggedIn = true;
-        $isAdmin = $_SESSION["isAdmin"];
-    }
-
-    include('php/db_connection.php');
-    $conn = connect();
-    if(!isset($_GET['blog_id'])){
-        header('Location: index.php');
-        exit;
-    }
-    $blog_id = $_GET['blog_id'];
-
-    // If a new comment is submitted:
-    if(isset($_POST['new_comment'])){
-        $comment_contents = $_POST['comment_contents'];
-        $sql = "INSERT INTO Comments (user_id, blog_id, comment_contents, comment_createdAt, like_count)
-                VALUES (:user_id, :blog_id, :comment_contents, NOW(), 0)";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['user_id' => $user_id, 'blog_id' => $blog_id, 'comment_contents' => $comment_contents]);
-        header("Location: post.php?blog_id=".$blog_id);
-        exit();
-    }
-
-    // Get blog posts
-    $sql = "SELECT blog.*, user.username, category.category_name
-            FROM Blogs blog
-            INNER JOIN Users user ON blog.user_id = user.user_id
-            JOIN blogCategory bc on blog.blog_id = bc.blog_id
-            JOIN Category category ON bc.category_id = category.category_id
-            WHERE blog.blog_id = :blog_id";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(['blog_id' => $blog_id]);
-    $blog = $stmt->fetch();
-    if (!$blog) {
-        header('Location: index.php');
-        exit;
-    }
-    // Get comments
-    $sql = "SELECT comment.*, user.username
-            FROM Comments comment
-            INNER JOIN Users user ON comment.user_id = user.user_id
-            WHERE comment.blog_id = :blog_id";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(['blog_id' => $blog_id]);
-    $comments = $stmt -> fetchAll();
-
-
-    $conn=null;
-
-
-
-?>
 <head>
     <meta charset="utf-8">
-    <title>VOCO Blog - <?php echo $blog['blog_title']?></title>
+    <title>VOCO Blog Page</title>
     <link rel="stylesheet" href="css/reset.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/comment.css">
+    <link rel="stylesheet" href="css/post.css">
+
+    <script type="text/javascript" src="js/post.js"></script>
+
 </head>
 <body>
-<header>
-    <nav class="navbar">
-        <div class="headbox">
-            <a href="index.php">Home</a>
-        </div>
-        <div class="headbox">
-            <form action="search.php" method="GET" id="search">
-                <label>
-                    <input id="search_query" name="search" type="text" placeholder="Search..">
-                </label>
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
+<?php
+include('php/header.php');
 
-        <div class="headbox">
-            <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
-        </div>
+if(!isset($_GET['blog_id'])){
+    header('Location: index.php');
+    exit;
+}
+$blog_id = $_GET['blog_id'];
 
-        <?php
-        if ($loggedIn && $isAdmin) {
-            echo "<div class=\"headbox\"><a href=\"admin.php\">Admin</a><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
-        }elseif ($loggedIn){
-            echo "<div class=\"headbox\"><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
-        } else {
-            echo "<div class=\"headbox\"><a href=\"login.php\">Login</a><a href=\"register.html\">Register</a></div>";
-        }
-        ?>
 
-    </nav>
-</header>
+// Get blog posts
+$sql = "SELECT blog.*, user.username, category.category_name
+        FROM Blogs AS blog
+        INNER JOIN Users AS user ON blog.user_id = user.user_id
+        JOIN blogCategory AS bc ON blog.blog_id = bc.blog_id
+        JOIN Category category ON bc.category_id = category.category_id
+        WHERE blog.blog_id = :blog_id";
+$stmt = $conn->prepare($sql);
+$stmt->execute(['blog_id' => $blog_id]);
+$blog = $stmt->fetch();
+if (!$blog) {
+    header('Location: index.php');
+    exit;
+}
 
-<form action="" method="post">
-    <div class="column">
-        <div id="left">
-            <?php
-            echo "<h2>".$blog['blog_title']." - By ".$blog['username']."</h2>";
-            ?>
-            <div  class="articleContainer">
-                <?php
-                if(isset($blog['blog_img'])){
-                    echo "<figure><img src=".$blog['blog_img']." height=\"50%\" width=\"50%\" alt='Blog image'></figure>";
+$data = array(
+    'blog_id' => $blog_id,
+    'user_id' => $user_id,
+    'action' => 'get_blog_comments'
+);
+
+$comment_data = json_encode($data);
+?>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: 'php/comment_handler.php',
+            type: 'POST',
+            data: <?php echo $comment_data ?>,
+            success: function (response) {
+                $('#commentContainer').html(response);
+            }
+        })
+        $('#commentForm').submit(function (event) {
+            event.preventDefault()
+            var formData = $(this).serialize()
+            $.ajax({
+                url: 'php/comment_handler.php',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    $('#commentContainer').append(response)
+                    $('#commentForm')[0].reset()
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
                 }
-                ?>
-                <p style="white-space: pre-wrap;">
-                    <?php
-                    echo $blog['blog_contents'];
-                    ?>
-                </p>
-            </div>
-        </div>
-        <div id="right">
-            <div>
-                <fieldset>
-                    <legend>Comments</legend>
-                    <?php
-                        if($loggedIn){
-                            echo "<form method='post'>";
-                            echo "<label><input required type='text' name='comment_contents' placeholder='Write a comment...' maxlength='256'></label>";
-                            echo "<button type='submit' name='new_comment'>Submit</button>";
-                            echo "</form>";
+            })
+        })
+        $('#submit-reply-form').on('click', function(event) {
+            event.preventDefault();
+            var formData = $('#comment-'+comment_id+'-reply-form').serialize();
+            $.ajax({
+                url: 'php/comment_handler.php',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    $('#comment-'+comment_id+'-reply-form').after(response);
+                    $('#comment-'+comment_id+'-reply-form')[0].reset();
+                    $('#comment-'+comment_id+'-reply-form').removeClass('d-block').addClass('d-none');
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        });
+        document.addEventListener(
+            "click",
+            function(event) {
+                var target = event.target
+                var replyForm;
+                if (target.matches("[data-toggle='reply-form']")) {
+                    replyForm = document.getElementById(target.getAttribute("data-target"))
+                    replyForm.classList.toggle("d-none")
+                }
+            },
+            false
+        )
+    })
 
-                        }
-                    ?>
-                    <div class="articleContainer">
-                    <?php
-                        foreach($comments as $comment){
-                            echo "<div class='article'>";
-                            if($comment['user_id'] == $user_id){
-                                echo "<form method='post' action='php/update_comment.php'>";
-                                echo "<input type='hidden' name='comment_id' value='".$comment['comment_id']."'>";
-                                echo "<input type='hidden' name='blog_id' value='".$blog_id."'>";
-                                echo "<label><input type='text' name='comment_contents' value='".$comment['comment_contents']."'></label>";
-                                echo "<button type='submit'>Update</button>";
-                                echo "</form>";
-                                echo "<form method='post' action='php/delete_comment.php'>";
-                                echo "<input type='hidden' name='comment_id' value='".$comment['comment_id']."'>";
-                                echo "<input type='hidden' name='blog_id' value='".$blog_id."'>";
-                                echo "<button type='submit'>Delete</button>";
-                                echo "</form>";
-                            }else{
-                                echo "<h3>".$comment['username']."</h3>";
-                                echo "<p>".$comment['comment_contents']."</p>";
-                            }
-                            echo "</div>";
-                        }
-                    ?>
-                    </div>
-                </fieldset>
-<!--                <fieldset>-->
-<!--                    <legend>Related Posts</legend>-->
-<!--                    <div class="articleContainer">-->
-<!--                        <div class="article">-->
-<!--                            <h3>A Blog title</h3>-->
-<!--                            <p>This is the first two sentences of a blog post</p>-->
-<!--                        </div>-->
-<!--                        <div class="article">-->
-<!--                            <h3>A Blog title</h3>-->
-<!--                            <p>This is the first two sentences of a blog post</p>-->
-<!---->
-<!--                        </div>-->
-<!--                        <div class="article">-->
-<!--                            <h3>A Blog title</h3>-->
-<!--                            <p>This is the first two sentences of a blog post</p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </fieldset>-->
+
+
+</script>
+<div class="column">
+    <div id="left">
+        <?php
+        echo "<div id='blog-header'><h2>" . $blog['blog_title'] . " - By " . $blog['username'] . "</h2>";
+        if($loggedIn) {
+            // Check if user has liked post before
+            $sql = "SELECT * FROM blogLikes WHERE user_id= :user_id AND blog_id= :blog_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(['blog_id' => $blog_id, 'user_id' => $user_id]);
+            $result = $stmt->fetch();
+
+            // User did not like post already
+            if($stmt -> rowCount() == 0) {
+                // User UPDATE like and RESPONSE update count and CHANGE button...
+                echo "<div id=\"like\"><form id='like-form'><input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"blog_id\" value=\"".$blog_id."\"><input type=\"hidden\" id=\"action\" name=\"action\" value=\"like\"><button id='like-btn' type=\"submit\">Like</button></form></div>";
+            } else {
+                echo "<div id=\"like\"><form id='like-form'><input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"blog_id\" value=\"".$blog_id."\"><input type=\"hidden\" id=\"action\" name=\"action\" value=\"unlike\"><button id='like-btn' type=\"submit\">Unlike</button></form></div>";
+            }
+            }
+            echo "<p id='like-count'>Likes: ".$blog['like_count']."</p>";
+
+
+
+
+            echo "</div>";
+        ?>
+            <div class="articleContainer" id="blog-stuff">
+                <?php
+            if(isset($blog["blog_img"]) && isset($blog["blog_img_type"])){
+                $imagedata = $blog["blog_img"];
+                $contentType = $blog["blog_img_type"];
+                echo "<figure class='blog-figure'><img src=\"data:image/" . $contentType . ";base64," . base64_encode($imagedata) . "\" /></figure>";
+            }
+            //Display blog content
+            echo "<div id=\"blog-contents\"><p>".$blog['blog_contents']."</p></div>";
+            ?>
+
+            </div>
+    </div>
+    <div id="right">
+        <div id ='comments'>
+            <form method="post" id="commentForm">
+                <label>
+                    <input required type="text" name="comment_contents" placeholder="Write a comment..." maxlength="256" <?php if(!$loggedIn) echo "disabled" ?>>
+                </label>
+                <input type="hidden" name="user_id" value="<?php echo $user_id?>">
+                <input type="hidden" name="blog_id" value="<?php echo $blog_id?>">
+                <input type="hidden" name="action" value="new_comment">
+                <button <?php if(!$loggedIn) echo "disabled" ?> type="submit">Submit</button>
+            </form>
+            <div class="articleContainer" id="commentContainer">
             </div>
         </div>
+
     </div>
+</div>
 <footer>
 </footer>
-<script src="js/main.js"></script>
 </body>
 
 </html>

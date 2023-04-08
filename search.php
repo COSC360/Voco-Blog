@@ -3,7 +3,6 @@
 <?php
 include('php/db_connection.php');
 $conn = connect();
-// TODO: Update so that filters work - maybe extract to different file?
 
 $search_query = $_GET['search'];
 // Get Blog Posts
@@ -21,22 +20,6 @@ $sql = "SELECT * FROM Category";
 $categories = $conn->query($sql);
 $conn = null;
 
-session_start();
-
-$username = null;
-$loggedIn = null;
-$isAdmin = null;
-
-if (isset($_SESSION["username"])) {
-    $username = $_SESSION["username"];
-}
-
-if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
-    $loggedIn = true;
-    $isAdmin = $_SESSION["isAdmin"];
-}
-
-
 ?>
 <head>
     <meta charset="utf-8">
@@ -46,36 +29,9 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-<header>
-    <nav class="navbar">
-        <div class="headbox">
-            <a href="index.php">Home</a>
-        </div>
-        <div class="headbox">
-            <form action="search.php" method="GET" id="search">
-                <label>
-                    <input id="search_query" name="search" type="text" placeholder="Search..">
-                </label>
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-
-        <div class="headbox">
-            <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
-        </div>
-
-        <?php
-        if ($loggedIn && $isAdmin) {
-            echo "<div class=\"headbox\"><a href=\"admin.php\">Admin</a><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
-        }elseif ($loggedIn){
-            echo "<div class=\"headbox\"><a href='profile.php'>".$username. "</a><a href='php/logout.php'>Log out</a></div>";
-        } else {
-            echo "<div class=\"headbox\"><a href=\"login.php\">Login</a><a href=\"register.html\">Register</a></div>";
-        }
-        ?>
-
-    </nav>
-</header>
+<?php
+include('php/header.php');
+?>
 <div class="column">
     <div id="left">
         <h2>Showing results for: "<?php echo $search_query ?>"</h2>
@@ -85,8 +41,12 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
             <?php
             foreach($blogs as $blog){
                 echo "<div class='entry'>";
-                if(isset($blog['blog_img'])){
-                    echo "<figure><img src=".$blog['blog_img']." height=\"100%\" width=\"100%\"></figure>";
+
+                //List of categories for blog post
+                if(isset($blog["blog_img"]) && isset($blog["blog_img_type"])){
+                    $imagedata = $blog["blog_img"];
+                    $contentType = $blog["blog_img_type"];
+                    echo "<figure><img src=\"data:image/".$contentType.";base64,".base64_encode($imagedata)."\" height=\"100%\" width=\"100%\" /></figure>";
                 }
                 echo "<div class='blog-title'><h3><a href='post.php?blog_id=" . $blog['blog_id'] . "'>".$blog['blog_title']." - By ".$blog['username']."</a></h3></div>";
                 echo "<div class='blog-preview'><p>". substr($blog['blog_contents'], 0, 100)."</p></div>";
@@ -115,6 +75,5 @@ if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
 <footer>
 
 </footer>
-<script src="js/main.js"></script>
 </body>
 </html>

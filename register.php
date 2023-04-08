@@ -35,21 +35,14 @@
 </head>
 
 <body>
-  <header>
-    <nav class="navbar">
-
-      <div class="headbox">
-        <!--TODO: Include Logo Image-->
-        <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
-      </div>
-
-      <div class="headbox">
-        <a href="index.php">Back</a>
-      </div>
-    </nav>
-  </header>
+  <?php
+  include('php/header.php');
+  if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
+      header('Location: index.php');
+  }
+  ?>
   <div class="singleColumn">
-        <form action="php/newuser.php" method="POST" class="user-form" id="newuser-form">
+        <form action="php/newuser.php" method="POST" class="user-form" id="newuser-form" enctype="multipart/form-data">
               <div>
                   <label for="firstname">First Name</label>
                   <input type="text" name="firstname" id="firstname" placeholder="John">
@@ -67,6 +60,10 @@
                   <input required type="email" name="email" id="email" placeholder="example@webmail.com">
               </div>
               <div>
+                <label for="profile_picture">Profile Picture</label>
+                <input type="file" name="profile_picture" id="profile_picture" accept=".jpg,.png,.gif">
+              </div>
+              <div>
                   <label for="password">Password</label>
                   <input required type="password" name="password" id="password" placeholder="Enter Your Password">
               </div>
@@ -80,7 +77,6 @@
   <footer>
 
   </footer>
-  <script src="js/main.js"></script>
 </body>
 
 </html>

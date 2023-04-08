@@ -1,28 +1,3 @@
-<?php
-session_start();
-
-$username = null;
-$loggedIn = null;
-$isAdmin = null;
-
-if (isset($_SESSION["username"])) {
-    $username = $_SESSION["username"];
-    $user_id = $_SESSION['active_user_id'];
-}
-
-if (isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) {
-    $loggedIn = true;
-    $isAdmin = $_SESSION["isAdmin"];
-}else {
-    header("Location: register.html");
-    exit();
-}
-if(!$isAdmin){
-    header('Location: index.php');
-}
-
-?>
-
 <!doctype html>
 <html class="no-js" lang="">
 
@@ -33,24 +8,27 @@ if(!$isAdmin){
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/admin.css">
-  <script type="text/javascript" src="js/admin.js"></script>
+  <script type="text/javascript" src="js/table_handler.js"></script>
 
 
 </head>
 
 <body>
-<header>
-  <nav class="navbar">
-    <div class="headbox">
-      <!--TODO: Include Logo Image-->
-      <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
-    </div>
+<?php
 
-    <div class="headbox">
-      <a href="index.php">Back</a>
-    </div>
-  </nav>
-</header>
+session_start();
+
+if((isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) && $_SESSION["isAdmin"] == false){
+   header("Location: index.php");
+}
+
+session_abort();
+
+
+// MUST BE DECLARED AFTER ANY HEADER
+include('php/header.php');
+
+?>
 
 <!--TODO: Update 3 column layout to be prettier:
  Col 1: blog posts - view list of posted blogs, ability to view/edit/delete
@@ -67,13 +45,13 @@ if(!$isAdmin){
 
   <script>
     document.getElementById("manageuser").addEventListener("click", function () {
-        userTableRequest("user");
+        userTableRequest("php/adminmanager.php","user");
     })
     document.getElementById("manageblogpost").addEventListener("click", function() {
-        userTableRequest("blog");
+        userTableRequest("php/adminmanager.php","blog");
     });
     document.getElementById("manageadmin").addEventListener("click", function() {
-        userTableRequest("admin")
+        userTableRequest("php/adminmanager.php","admin")
     });
 
   </script>
@@ -92,7 +70,6 @@ if(!$isAdmin){
 <footer>
 
 </footer>
-<script src="js/main.js"></script>
 </body>
 
 </html>
