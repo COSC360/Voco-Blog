@@ -7,6 +7,11 @@
     white-space: pre-wrap;
 }
 
+#blog-contents {
+    padding: 5em;
+    overflow: scroll;
+}
+
 #blog-contents p {
     word-wrap: break-all;
 }
@@ -19,4 +24,18 @@
 #blog-header {
     display: flex;
     align-items: center;
+}
+
+#blog-stuff {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.blog-figure img {
+    flex: 0 0 auto;
+    max-width: 100%;
+    height: 20em;
+    text-align: center;
 }
