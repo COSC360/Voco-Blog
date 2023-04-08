@@ -20,7 +20,7 @@
         //TODO:  For now only sends one category_id val, allow more then one
         $catagories = $_POST["categories"];
         // Extract profile image file from user page
-        if(empty($_FILES)) {
+        if(!empty($_FILES)) {
         //Retrieve profile img contents
         $cover_img = $_FILES["cover_img"]["tmp_name"];
         $img_path = $_FILES["cover_img"]['name'];
