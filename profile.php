@@ -35,7 +35,7 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
             echo "<h3 style='float:left;'>".$blog['blog_title']."</h3><h3 style='float:right;'>Likes: ".$blog['like_count']."</h3>";
             echo "</div><div class='entry-buttons'>";
             echo "<a href='post.php?blog_id=".$blog['blog_id']."'><button>View</button></a>";
-            echo "<a href='create.php?blog_id=".$blog['blog_id']."'><button>Edit</button></a>";
+            echo "<a href='update.php?blog_id=".$blog['blog_id']."'><button>Edit</button></a>";
             // TODO: Add a "are you sure" confirmation?
             echo "<a href='php/delete_blog.php?blog_id=".$blog['blog_id']."'><button>Delete</button></a>";
             echo "</div></div>";
