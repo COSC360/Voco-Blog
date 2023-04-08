@@ -70,7 +70,7 @@ if(count($result) > 0 ) {
     $table .= $tbody."</tbody></table>";
     echo $table;
 } else {
-    echo "Error: Empty Table";
+    echo "No Results Found...";
 }
 
 ?>

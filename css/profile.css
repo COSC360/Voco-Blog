@@ -35,7 +35,7 @@
 }
 
 .entry-buttons {
-    height: 4em;
+    height: 2em;
     width: 100%;
 }
 
@@ -48,6 +48,7 @@
     flex-direction: row;
     height: auto;
     justify-content: center;
+    border-bottom: solid thin lightgrey;
 }
 
 #sidenav a {
@@ -58,8 +59,12 @@
     color: blue;
 }
 
+
 table {
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    text-overflow: ellipsis;
 }
 
 .popup {
@@ -97,4 +102,7 @@ table {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+#profilepicture{
+    border-bottom: solid thin lightgrey;
 }

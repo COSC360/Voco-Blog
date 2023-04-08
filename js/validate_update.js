@@ -50,6 +50,6 @@ window.onload = function()
                 makeClean(requiredInputs[i]);
             }
         }
-        checkPasswordMatch(e);
+        checkMatchingPassword(e);
     }
 }
