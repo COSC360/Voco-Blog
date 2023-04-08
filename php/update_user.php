@@ -8,7 +8,7 @@ if(!$_SERVER['REQUEST_METHOD']=="POST"){
 }else{
     session_start();
     if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true) || $_POST['user_id']!=$_SESSION['active_user_id']){
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit();
     }
     session_abort();
