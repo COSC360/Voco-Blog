@@ -37,7 +37,7 @@
         // Validate img contents
         if($_FILES["profile_picture"]["size"] < 8000000 && ($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "gif") ) {
             $uploadOk = 1;
-            echo "VALID IMAGE UPLOAD";
+//            echo "VALID IMAGE UPLOAD";
         } else {
             die("Error: Image is too large or image is invalid type");
         }
@@ -58,7 +58,7 @@
             echo "<p> username and/or email already exists<p>";
             // Close connection
             $pdo = null;
-
+            header("Location: ../register.php");
         } else {
 
         //Insert new user into the database

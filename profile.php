@@ -10,29 +10,6 @@
     <script type="text/javascript" src="js/table_handler.js"></script>
     <script type="text/javascript" src="js/validate_update.js"></script>
 </head>
-<script>
-
-    function checkMatchingPassword(e) {
-
-
-        var password = document.getElementById("password");
-        var password_check = document.getElementById("verifyPassword");
-
-        if(password.value === password_check.value) {
-            mainForm.submit();
-        } else {
-            makeRed(password);
-            makeRed(password_check);
-            alert("Passwords do not match");
-            e.preventDefault();
-        }
-
-        function makeRed(inputDiv) {
-            inputDiv.style.borderColor="#AA0000";
-        }
-
-    }
-</script>
 <body>
 <?php
 include('php/header.php');
@@ -46,9 +23,13 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
 
 <div class="column">
     <div class="card">
+
         <h2>Your Posts</h2>
         <?php
         $blogs = get_user_posts($conn, $user_id);
+        if(!$blogs){
+            echo "No Posts Found...";
+        }
         foreach ($blogs as $blog){
             echo "<div class='post-entry'><div class='post-preview'>";
             echo "<h3 style='float:left;'>".$blog['blog_title']."</h3><h3 style='float:right;'>Likes: ".$blog['like_count']."</h3>";
@@ -68,10 +49,10 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
         ?>
         <div class="profile-contents">
 
-         <?php echo "<figure><img class=\"profile-pic\" src=\"data:image/".$user["profile_picture_type"].";base64,".base64_encode($user["profile_picture"])."\" height=\"100%\" width=\"100%\" /></figure>" ?>
-
-            <p>First Name: <?php echo $user['first_name']?> <br> Last Name: <?php echo $user['last_name']?></p>
-            <p>Email: <?php echo $user['email'] ?></p>
+         <?php echo "<figure id='profilepicture'><img class=\"profile-pic\" src=\"data:image/".$user["profile_picture_type"].";base64,".base64_encode($user["profile_picture"])."\" height=\"100%\" width=\"100%\" /></figure>" ?>
+            <p><b>Username:</b> <?php echo $user['username']?></p>
+            <p><b>First Name:</b> <?php echo $user['first_name']?> <b>Last Name:</b> <?php echo $user['last_name']?></p>
+            <p><b>Email:</b> <?php echo $user['email'] ?></p>
 
         </div>
         <div id="profile-buttons">
@@ -142,7 +123,6 @@ if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
 
 </footer>
 <script>
-
 
     document.getElementById("cancel-edit-btn").addEventListener("click", function () {
         document.getElementById('edit-profile-popup').style.display = "none";
