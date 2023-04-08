@@ -37,8 +37,14 @@
                 <div class="postInput">
                     <label for="categories[]">Select Post Categories</label>
                     <select name="categories[]" id="categories[]" type="dropdown" multiple>
-                        <option value="1">Climb</option>
-                        <option value="2">Hike</option>
+                        <?php
+                            // Get all categories
+                            $sql = "SELECT * FROM Category";
+                            $categories = $conn->query($sql);
+                            while($row = $categories->fetch()){
+                                echo "<option value='".$row['category_id']."'>".$row['category_name']."</option>";
+                            }
+                        ?>
                     </select>
                 </div>
                 <div class="postInput">
