@@ -84,7 +84,7 @@ INSERT INTO Blogs ( user_id, blog_title, blog_createdAt, blog_modifiedAt, blog_i
 VALUES
 (1, 'My First Ski Trippy', NOW(), NOW(), NULL, 'I went on my first ski trip and it was amazing!'),
 (2, 'Climbing Adventures', NOW(), NOW(), NULL, 'I went on a climbing adventure and conquered my fears!'),
-(3, 'Cool Trip Adventure', NOW(), NOW(), NULL, 'SO COOL SO SEXY SO FUN'),
+(3, 'Cool Trip Adventure', NOW(), NOW(), NULL, 'Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!Wow! I went on a cool trip adventure!'),
 (4, 'SEDLKAJSDLKJAmnnmmm', NOW(), NOW(), NULL, 'I went on a climbing adventure and conquered my fears!');
 
 
