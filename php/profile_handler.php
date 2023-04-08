@@ -19,7 +19,7 @@ if (isset($_SESSION["username"])) {
 }else{
     die();
 }
-
+session_abort();
 if($tablename == "likedposts") {
     $result = get_liked_posts($conn,$user_id);
     // Set up for unlike actions
