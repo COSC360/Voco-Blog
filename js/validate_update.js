@@ -2,11 +2,8 @@
 
 function isBlank(inputField)
 {
-    if (inputField.value=="")
-    {
-        return true;
-    }
-    return false;
+    return inputField.value == "";
+
 }
 
 function makeRed(inputDiv){
@@ -40,9 +37,7 @@ window.onload = function()
 
     mainForm.onsubmit = function(e)
     {
-        var requiredInputs = document.querySelectorAll(".required");
         var err = false;
-
         for (var i=0; i < requiredInputs.length; i++)
         {
             if( isBlank(requiredInputs[i]))
@@ -55,14 +50,6 @@ window.onload = function()
                 makeClean(requiredInputs[i]);
             }
         }
-        if (err == true)
-        {
-            e.preventDefault();
-        }
-        else
-        {
-            console.log('checking match');
-            checkPasswordMatch(e);
-        }
+        checkPasswordMatch(e);
     }
 }

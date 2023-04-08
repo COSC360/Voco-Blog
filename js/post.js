@@ -10,7 +10,7 @@ $(document).ready(function () {
                 if($('#action').val() == "like") {
                     console.log(response);
                     $("#like-btn").html("Unlike");
-                    $('input[name="action"').val("unlike");
+                    $('input[name="action"]').val("unlike");
                 } else {
                     console.log(response);
                     $("#like-btn").html("Like");
