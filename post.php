@@ -59,7 +59,6 @@ $comment_data = json_encode($data);
             }
         })
         $('#commentForm').submit(function (event) {
-            console.log("submitting")
             event.preventDefault()
             var formData = $(this).serialize()
             $.ajax({
@@ -75,19 +74,38 @@ $comment_data = json_encode($data);
                 }
             })
         })
+        $('#submit-reply-form').on('click', function(event) {
+            event.preventDefault();
+            var formData = $('#comment-'+comment_id+'-reply-form').serialize();
+            $.ajax({
+                url: 'php/comment_handler.php',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    $('#comment-'+comment_id+'-reply-form').after(response);
+                    $('#comment-'+comment_id+'-reply-form')[0].reset();
+                    $('#comment-'+comment_id+'-reply-form').removeClass('d-block').addClass('d-none');
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        });
+        document.addEventListener(
+            "click",
+            function(event) {
+                var target = event.target
+                var replyForm;
+                if (target.matches("[data-toggle='reply-form']")) {
+                    replyForm = document.getElementById(target.getAttribute("data-target"))
+                    replyForm.classList.toggle("d-none")
+                }
+            },
+            false
+        )
     })
-    document.addEventListener(
-        "click",
-        function(event) {
-            var target = event.target
-            var replyForm;
-            if (target.matches("[data-toggle='reply-form']")) {
-                replyForm = document.getElementById(target.getAttribute("data-target"))
-                replyForm.classList.toggle("d-none")
-            }
-        },
-        false
-    )
+
+
 
 </script>
 <div class="column">
