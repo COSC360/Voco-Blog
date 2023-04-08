@@ -1,5 +1,5 @@
 <?php
-include('db_connection.php');
+require_once('db_connection.php');
 $conn = connect();
 session_start();
 function get_blog_comments($conn, $blog_id){
@@ -26,7 +26,7 @@ function get_user_comments($conn, $user_id){
 }
 
 function get_comment($conn, $comment_id){
-    $sql = "SELECT comment.*, user.username, user.user_id 
+    $sql = "SELECT comment.*, user.username, user.user_id
             FROM Comments comment
             INNER JOIN Users user ON comment.user_id = user.user_id
             WHERE comment.comment_id = :comment_id";
@@ -65,7 +65,7 @@ function get_replies($conn, $comment_id){
 
 function delete_comment($conn, $comment_id, $active_user_id){
     $sql = "SELECT user.user_id, role.role_name
-            FROM Users user 
+            FROM Users user
             INNER JOIN Roles role ON user.role_id = Roles.role_id
             WHERE user_id = :user_id";
     $stmt = $conn->prepare($sql);

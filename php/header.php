@@ -1,6 +1,6 @@
 <?php
 include("user_handler.php");
-include('php/db_connection.php');
+require_once('php/db_connection.php');
 $conn = connect();
 session_start();
 $username = null;

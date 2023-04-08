@@ -1,5 +1,5 @@
 <?php
-include("db_connection.php");
+require_once("db_connection.php");
 $conn = connect();
 
 function get_like_count($conn,$blog_id) {

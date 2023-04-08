@@ -1,5 +1,5 @@
 <?php
-    include("db_connection.php");
+    require_once("db_connection.php");
     include("validateRequests.php");
 
     // Connection to db
