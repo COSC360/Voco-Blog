@@ -166,3 +166,11 @@ if (isset($_POST['action']) && $_POST['action'] == 'delete') {
         header("Location: ../post.php?blog_id=" . $_POST['post_id']);
     }
 }
+
+if (isset($_POST['action']) && $_POST['action'] == 'profile-delete') {
+    $comment_id = $_POST['comment_id'];
+    $user_id = $_POST['user_id'];
+    delete_comment($conn, $comment_id);
+    header("Location: ../profile.php?user_id=" . $_POST['user_id']);
+
+}
