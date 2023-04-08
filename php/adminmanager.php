@@ -67,7 +67,24 @@
                 }
             }
             $delete = "<td><form method=\"GET\" action=\"php/".$action."\"><input type=\"hidden\" name=\"".$id."\" value=\"".$entry[0]."\"><button type=\"submit\">Delete</button></form></td>";
-            $tbody .= $row.$delete."</tr>";
+            $tbody .= $row.$delete;
+
+            //Add 'admin button' for user page
+            if($tablename=="user" ) {
+                //Check if current user is a USER, then add 'add admin'
+                if($entry['role_id'] == 1) {
+                $addadmin = "<td><form method='POST' action='php/addadmin.php'><input type='hidden' name='".$id."' value='".$entry[0]."'><button type='submit'>Add Admin</button></form></td>";
+                $tbody .= $addadmin;
+                }
+            }
+            //Add 'admin button' remove admin for admin page
+            if($tablename=="admin" ) {
+                $removedadmin = "<td><form method='POST' action='php/removeadmin.php'><input type='hidden' name='".$id."' value='".$entry[0]."'><button type='submit'>Remove Admin</button></form></td>";
+                $tbody .= $removedadmin;
+
+            }
+
+            $tbody.="</tr>";
         }
         $table .= $tbody."</tbody></table>";
         echo $table;

@@ -70,7 +70,7 @@ $categories = $conn->query($sql);
                 <legend>Filters</legend>
                 <?php
                 while($row = $categories->fetch()){
-                    echo "<button type='button' value='".$row['category_name']."'>".$row['category_name']."</button>";
+                    echo "<form id='filter-form'><button type='button' value='".$row['category_name']."'>".$row['category_name']."</button></form>";
                 }
                 ?>
             </fieldset>

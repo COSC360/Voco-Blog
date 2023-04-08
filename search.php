@@ -41,8 +41,12 @@ include('php/header.php');
             <?php
             foreach($blogs as $blog){
                 echo "<div class='entry'>";
-                if(isset($blog['blog_img'])){
-                    echo "<figure><img src=".$blog['blog_img']." height=\"100%\" width=\"100%\"></figure>";
+
+                //List of categories for blog post
+                if(isset($blog["blog_img"]) && isset($blog["blog_img_type"])){
+                    $imagedata = $blog["blog_img"];
+                    $contentType = $blog["blog_img_type"];
+                    echo "<figure><img src=\"data:image/".$contentType.";base64,".base64_encode($imagedata)."\" height=\"100%\" width=\"100%\" /></figure>";
                 }
                 echo "<div class='blog-title'><h3><a href='post.php?blog_id=" . $blog['blog_id'] . "'>".$blog['blog_title']." - By ".$blog['username']."</a></h3></div>";
                 echo "<div class='blog-preview'><p>". substr($blog['blog_contents'], 0, 100)."</p></div>";

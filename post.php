@@ -124,7 +124,6 @@ $comment_data = json_encode($data);
                 // User UPDATE like and RESPONSE update count and CHANGE button...
                 echo "<div id=\"like\"><form id='like-form'><input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"blog_id\" value=\"".$blog_id."\"><input type=\"hidden\" id=\"action\" name=\"action\" value=\"like\"><button id='like-btn' type=\"submit\">Like</button></form></div>";
             } else {
-                //TODO: Unlike Option
                 echo "<div id=\"like\"><form id='like-form'><input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"><input type=\"hidden\" name=\"blog_id\" value=\"".$blog_id."\"><input type=\"hidden\" id=\"action\" name=\"action\" value=\"unlike\"><button id='like-btn' type=\"submit\">Unlike</button></form></div>";
             }
             }
@@ -135,12 +134,12 @@ $comment_data = json_encode($data);
 
             echo "</div>";
         ?>
-            <div class="articleContainer">
+            <div class="articleContainer" id="blog-stuff">
                 <?php
             if(isset($blog["blog_img"]) && isset($blog["blog_img_type"])){
                 $imagedata = $blog["blog_img"];
                 $contentType = $blog["blog_img_type"];
-                echo "<figure><img src=\"data:image/" . $contentType . ";base64," . base64_encode($imagedata) . "\" height=\"50%\" width=\"50%\" /></figure>";
+                echo "<figure class='blog-figure'><img src=\"data:image/" . $contentType . ";base64," . base64_encode($imagedata) . "\" /></figure>";
             }
             //Display blog content
             echo "<div id=\"blog-contents\"><p>".$blog['blog_contents']."</p></div>";
