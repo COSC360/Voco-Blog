@@ -31,6 +31,12 @@ $categories = $conn->query($sql);
             <?php
             while ($row = $blogs->fetch()) {
                 echo "<div class='entry'>";
+                $sql= "SELECT * FROM blogCategory AS blogcat  JOIN Category AS cat ON blogcat.category_id=cat.category_id WHERE blogcat.blog_id= :blog_id";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute(['blog_id' => $row['blog_id']]);
+                $categoryList = $stmt->fetchAll();
+
+                //List of categories for blog post
                 if(isset($row["blog_img"]) && isset($row["blog_img_type"])){
                     $imagedata = $row["blog_img"];
                     $contentType = $row["blog_img_type"];
@@ -40,8 +46,14 @@ $categories = $conn->query($sql);
                 echo "<div><h3> By: ".$row['username']."</h3></div>";
                 echo "<div class='blog-preview'><p>". substr($row['blog_contents'], 0, 100)."</p></div>";
                 echo "<div class='blog-author'><a href='profile.php' style='padding:0.5em'><img src=\"data:image/".$row["profile_picture_type"].";base64,".base64_encode($row["profile_picture"])."\" style=\"border:solid thin black;border-radius:50%\" height=\"30em\" width=\"30em\"></a><h3>".$row['username']."</h3></div>";
-                echo "<div class='blog-catagories'>Catagory 1, Catagory 2, Catagory 3</div>";
+                //Iterate through category list for blog post
+                $blog_categories = "<div class='blog-catagories'>";
 
+                foreach($categoryList as $cat) {
+                    $blog_categories .="<div class='cat-item'>".$cat['category_name']."</div>";
+
+                }
+                echo $blog_categories."</div>";
                 echo "</div>";
             }
             ?>
