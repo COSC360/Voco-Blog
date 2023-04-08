@@ -58,7 +58,7 @@ if (isset($_GET['user_id'])) {
         unset($_SESSION["isAdmin"]);
         $_SESSION["loggedIn"] = false;
         session_destroy();
-        header("Location: login.php");
+        header("Location: ../login.php");
     }
     $conn = null;
     exit();
