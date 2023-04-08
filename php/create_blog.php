@@ -2,11 +2,10 @@
     include("db_connection.php");
     include("validateRequests.php");
 
-    session_start();
-
     // Connection to db
     $pdo = connect();
 
+    session_start();
     // Validate user is logged in (should always be true, but good to check)
     if(isset($_SESSION["active_user_id"])) {
         $active_user_id = $_SESSION["active_user_id"];
@@ -20,7 +19,6 @@
         $blog_contents = $_POST["blog_contents"];
         //TODO:  For now only sends one category_id val, allow more then one
         $catagories = $_POST["categories"];
-
         // Extract profile image file from user page
         if(empty($_FILES)) {
         //Retrieve profile img contents
@@ -33,7 +31,6 @@
         // Validate img contents
         if($_FILES["cover_img"]["size"] < 8000000 && ($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "gif") ) {
             $uploadOk = 1;
-            echo "VALID IMAGE UPLOAD";
      } else {
         die("Error: Image is too large or image is invalid type");
      }
@@ -49,7 +46,7 @@
         die();
     }
 
-    // // INSERT into Blogs
+    // INSERT into Blogs
     $sql = "INSERT INTO Blogs (user_id,blog_title,blog_createdAt,blog_modifiedAt,blog_img,blog_img_type,blog_contents,like_count) VALUES (?,?,NOW(),NOW(),?,?,?,?)";
 
     $stmt = $pdo->prepare($sql);
@@ -60,12 +57,15 @@
     $new_blog_id = $pdo->lastInsertId();
 
     // //TODO: Allow users to add category tags to a blog post
-    $sql = "INSERT INTO blogCategory VALUES (?,?)";
 
-    $stmt = $pdo->prepare($sql);
+    foreach($catagories as $cat => $cat_id) {
+        $sql = "INSERT INTO blogCategory VALUES (?,?)";
+        $stmt = $pdo->prepare($sql);
+        $result = $stmt->execute([$cat_id,$new_blog_id]);
+    }
 
-    $result = $stmt->execute([$catagories,$new_blog_id]);
+
 
     //Redirect
-    header("Location: ../index.php");
+   header("Location: ../index.php");
 ?>

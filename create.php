@@ -12,19 +12,14 @@
 </head>
 
 <body>
-<header>
-    <nav class="navbar">
+    <?php
+    include('php/header.php');
 
-        <div class="headbox">
-          <!--TODO: Include Logo Image-->
-          <img src="./img/voco_logo_black.png" alt="VOCO Logo img" class="logo">
-        </div>
-
-        <div class="headbox">
-          <a href="index.php">Back</a>
-        </div>
-      </nav>
-</header>
+    if(!(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == true)){
+        header("Location: index.php");
+        exit();
+    }
+    ?>
 <form action="php/create_blog.php" method="post" enctype="multipart/form-data">
     <div class="column">
         <div id="left">
@@ -40,15 +35,15 @@
                     <input required type="text" id="postTitle" name="post_title">
                 </div>
                 <div class="postInput">
-                    <label for="categories">Select Post Categories</label>
-                    <select name="categories" id="categories" type="dropdown">
+                    <label for="categories[]">Select Post Categories</label>
+                    <select name="categories[]" id="categories[]" type="dropdown" multiple>
                         <option value="1">Climb</option>
                         <option value="2">Hike</option>
                     </select>
                 </div>
                 <div class="postInput">
                     <label for="bannerImage">Upload Cover Image:</label>
-                    <input type="file" name="cover_img" id="bannerImage">
+                    <input type="file" name="cover_img" id="bannerImage" accept=".jpg,.png,.gif">
                 </div>
                 <div class="postInput">
                     <label id="createPostButton">

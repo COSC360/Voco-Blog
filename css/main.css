@@ -196,6 +196,17 @@ h1,h2,h3,p,a,button,legend,label {
     bottom: 0;
     width: 100%;
 }
+
+.blog-catagories {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    overflow: scroll;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    background-color: red;
+}
 .entry figure {
     float: right;
     position: relative;
